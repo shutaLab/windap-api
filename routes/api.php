@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/windNote', [WindNoteController::class, 'index']);
+Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
