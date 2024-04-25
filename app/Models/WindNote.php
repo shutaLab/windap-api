@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class WindNote extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'content'
+    ];
 }
