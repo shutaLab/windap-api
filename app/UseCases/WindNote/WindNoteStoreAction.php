@@ -9,13 +9,13 @@ class WindNoteStoreAction
 {
     public function __invoke(WindNoteStoreRequest $request)
     {
-        $validated = $request->validate();
+        $validated = $request->validated();
 
         $windNote = WindNote::create($validated);
 
         return response()->json([
             'message' => 'ウィンドノートの作成に成功しました',
             'data' => $windNote
-        ], 201);
+        ], 200);
     }
 }

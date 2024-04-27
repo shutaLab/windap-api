@@ -10,6 +10,7 @@ class WindNote extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'title',
         'content'
     ];
