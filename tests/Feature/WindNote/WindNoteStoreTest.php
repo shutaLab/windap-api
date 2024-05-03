@@ -15,7 +15,8 @@ class WindNoteStoreTest extends TestCase
     {
         $response = $this->postJson('/api/windNote', [
             'title' => '今日の練習',
-            'content' => '内容が入ります'
+            'content' => '内容が入ります',
+            'date' => '2023-06-07'
         ]);
 
         $response->assertStatus(200);
