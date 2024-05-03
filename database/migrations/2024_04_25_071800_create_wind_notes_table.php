@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('wind_notes', function (Blueprint $table) {
             $table->id();
             $table->string('title')->comment('タイトル');
-            $table->string('content')->comment('内容');
+            $table->string('content')->comment('ノート内容');
+            $table->dateTime('date')->comment('日付');
             $table->timestamps();
         });
     }
