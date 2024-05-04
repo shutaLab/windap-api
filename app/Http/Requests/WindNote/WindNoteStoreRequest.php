@@ -33,7 +33,6 @@ class WindNoteStoreRequest extends FormRequest
                 'max:255'
             ],
             'date' => [
-                'required',
                 'date',
             ]
         ];
