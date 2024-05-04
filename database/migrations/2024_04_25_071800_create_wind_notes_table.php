@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->comment('タイトル');
             $table->string('content')->comment('ノート内容');
-            $table->dateTime('date')->comment('日付');
+            $table->dateTime('date')->nullable(true)->comment('日付');
             $table->timestamps();
         });
     }
