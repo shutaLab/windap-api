@@ -19,6 +19,7 @@ class WindNoteFactory extends Factory
         return [
             'title' => $this->faker->realText(rand(15, 20)),
             'content' => $this->faker->realText(rand(20, 30)),
+            'date' => now(),
             'created_at' => now(),
             'updated_at' => now()
         ];

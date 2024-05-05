@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class WindNoteDeleteAction
 {
-    public function __invoke($id)
+    public function __invoke($windNote)
     {
-        $windNote = WindNote::findOrFail($id);
         $windNote->delete();
 
         return response()->json([

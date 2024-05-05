@@ -4,7 +4,7 @@ namespace App\Http\Requests\WindNote;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class WindNoteStoreRequest extends FormRequest
+class WindNoteUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,6 +22,7 @@ class WindNoteStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+
             'title' => [
                 'required',
                 'string',
@@ -30,9 +31,7 @@ class WindNoteStoreRequest extends FormRequest
                 'required',
                 'string',
             ],
-            'date' => [
-                'date',
-            ]
+
         ];
     }
 }
