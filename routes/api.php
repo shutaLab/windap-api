@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\WindNoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,11 +15,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+// ウィンドノート
 Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
 Route::post('/windNote', [WindNoteController::class, 'store'])->name('windNote.store');
 Route::put('/windNote/{windNote}', [WindNoteController::class, 'update'])->name('windNote.update');
 Route::delete('/windNote/{windNote}', [WindNoteController::class, 'destroy'])->name('windNote.destroy');
+// 質問
+Route::get('/question', [QuestionController::class, 'index'])->name('question.index');
+Route::post('/question', [QuestionController::class, 'store'])->name('question.store');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
