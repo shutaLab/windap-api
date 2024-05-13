@@ -9,7 +9,7 @@ class QuestionIndexAction
 {
     public function __invoke(QuestionIndexRequest $request)
     {
-        $questions = Question::query()
+        $questions = Question::with('answers')
             ->orderBy('created_at', 'desc')
             ->get();
 
