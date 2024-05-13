@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\WindNoteController;
 use Illuminate\Http\Request;
@@ -25,6 +26,8 @@ Route::get('/question', [QuestionController::class, 'index'])->name('question.in
 Route::post('/question', [QuestionController::class, 'store'])->name('question.store');
 Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
 Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
+// 回答
+Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
