@@ -24,8 +24,10 @@ Route::delete('/windNote/{windNote}', [WindNoteController::class, 'destroy'])->n
 // 質問
 Route::get('/question', [QuestionController::class, 'index'])->name('question.index');
 Route::post('/question', [QuestionController::class, 'store'])->name('question.store');
+Route::get('question/{question}', [QuestionController::class, 'show'])->name('question.show');
 Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
 Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
+
 // 回答
 Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
 

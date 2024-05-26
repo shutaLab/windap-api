@@ -18,8 +18,8 @@ class AnswerFactory extends Factory
     public function definition(): array
     {
         return [
-            'conttent' => $this->faker->realText(rand(10, 20)),
-            'question_id' => Question::faker()
+            'content' => $this->faker->realText(rand(10, 20)),
+            'question_id' => Question::factory()
         ];
     }
 }
