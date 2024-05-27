@@ -22,7 +22,14 @@ class QuestionShowTest extends TestCase
 
         $response = $this->getJson("/api/question/{$question->id}");
 
-        dump($response->json());
         $response->assertStatus(200);
+
+        $response->assertJson([
+            'question' => [
+                'id' => $question->id,
+                'content' => $question->content,
+            ],
+            'answers' => $answers->toArray()
+        ]);
     }
 }

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 // ウィンドノート
 Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
 Route::post('/windNote', [WindNoteController::class, 'store'])->name('windNote.store');
+Route::get('/windNote/{windNote}', [WindNoteController::class, 'show'])->name('windNote.show');
 Route::put('/windNote/{windNote}', [WindNoteController::class, 'update'])->name('windNote.update');
 Route::delete('/windNote/{windNote}', [WindNoteController::class, 'destroy'])->name('windNote.destroy');
 // 質問
