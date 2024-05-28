@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('content')->comment('質問内容');
+            $table->text('content')->comment('質問内容');
             $table->timestamps();
         });
     }
