@@ -27,6 +27,7 @@ class CalendarEventStoreRequest extends FormRequest
                 'string'
             ],
             'content' => [
+                'nullable',
                 'string'
             ],
             'start_date' => [
