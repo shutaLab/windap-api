@@ -35,6 +35,7 @@ Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store')
 
 // カレンダー
 Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
+Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
