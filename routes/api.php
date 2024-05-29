@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\CalendarEventController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\WindNoteController;
 use Illuminate\Http\Request;
@@ -31,6 +32,9 @@ Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->n
 
 // 回答
 Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
+
+// カレンダー
+Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
