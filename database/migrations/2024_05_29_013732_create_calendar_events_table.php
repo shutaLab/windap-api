@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('content')->nullable(true)->comment('イベント内容');
             $table->dateTime('start_date')->comment('開始日時');
             $table->dateTime('end_date')->comment('終了日時');
-            $table->boolean('is_absent')->comment('欠席連絡かどうか');
+            $table->boolean('is_absent')->nullable(true)->comment('欠席連絡かどうか');
             $table->timestamps();
         });
     }

@@ -39,7 +39,7 @@ class CalendarEventStoreRequest extends FormRequest
                 'date_format:Y-m-d\TH:i:s\Z'
             ],
             'is_absent' => [
-                'required',
+                'nullable',
                 'boolean'
             ]
         ];
