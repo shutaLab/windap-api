@@ -19,8 +19,8 @@ class CalendarEventFactory extends Factory
         return [
             'title' => $this->faker->realText(rand(10, 15)),
             'content' => $this->faker->realText(rand(10, 20)),
-            'start_date' => now(),
-            'end_date' => now(),
+            'start' => now(),
+            'end' => now(),
             'is_absent' => true
         ];
     }

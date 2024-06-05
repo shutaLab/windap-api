@@ -15,8 +15,8 @@ class CalendarEventStoreTest extends TestCase
     {
         $response = $this->postJson('api/calendar', [
             'title' => '鎌倉学生選手権',
-            'start_date' => '2024-05-29T09:00:00Z',
-            'end_date' => '2024-05-29T09:00:00Z',
+            'start' => '2024-05-29T09:00:00Z',
+            'end' => '2024-05-29T09:00:00Z',
             'is_absent' => false
         ]);
 

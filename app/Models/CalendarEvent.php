@@ -9,11 +9,11 @@ class CalendarEvent extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content', 'start_date', 'end_date', 'is_absent'];
+    protected $fillable = ['title', 'content', 'start', 'end', 'is_absent'];
 
     protected $casts = [
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
+        'start' => 'datetime',
+        'end' => 'datetime',
         'is_absent' => 'boolean'
     ];
 }

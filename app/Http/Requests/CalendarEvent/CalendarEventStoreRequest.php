@@ -30,11 +30,11 @@ class CalendarEventStoreRequest extends FormRequest
                 'nullable',
                 'string'
             ],
-            'start_date' => [
+            'start' => [
                 'required',
                 'date_format:Y-m-d\TH:i:s\Z'
             ],
-            'end_date' => [
+            'end' => [
                 'required',
                 'date_format:Y-m-d\TH:i:s\Z'
             ],
