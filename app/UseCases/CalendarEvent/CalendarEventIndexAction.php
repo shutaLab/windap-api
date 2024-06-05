@@ -12,6 +12,6 @@ class CalendarEventIndexAction
         $calendarEvent = CalendarEvent::query()
             ->get();
 
-        return response()->json($calendarEvent);
+        return response()->json(['events' => $calendarEvent]);
     }
 }
