@@ -15,7 +15,6 @@ class LoginController extends Controller
     {
         // バリデーション
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
         ]);
@@ -26,7 +25,6 @@ class LoginController extends Controller
 
         // 新規ユーザー作成
         $user = User::create([
-            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
