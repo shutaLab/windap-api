@@ -18,35 +18,38 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-// ウィンドノート
-Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
-Route::post('/windNote', [WindNoteController::class, 'store'])->name('windNote.store');
-Route::get('/windNote/{windNote}', [WindNoteController::class, 'show'])->name('windNote.show');
-Route::put('/windNote/{windNote}', [WindNoteController::class, 'update'])->name('windNote.update');
-Route::delete('/windNote/{windNote}', [WindNoteController::class, 'destroy'])->name('windNote.destroy');
 
-// 質問
-Route::get('/question', [QuestionController::class, 'index'])->name('question.index');
-Route::post('/question', [QuestionController::class, 'store'])->name('question.store');
-Route::get('/question/{question}', [QuestionController::class, 'show'])->name('question.show');
-Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
-Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
+// 認証不要
+Route::post('login', [LoginController::class, 'login'])->name('login');
+Route::post('register', [LoginController::class, 'register'])->name('register');
 
-// 回答
-Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
-
-// カレンダー
-Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
-Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
-
-// ログインとログアウト（セッションミドルウェアを適用）
-Route::middleware('web')->group(function () {
-    Route::post('login', [LoginController::class, 'login'])->name('login');
+// 認証必要
+Route::middleware('auth:sanctum')->group(function () {
+    // 認証済みユーザーの取得
+    Route::get('user', function (Request $request) {
+        return $request->user();
+    });
+    // ログアウト
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-    Route::post('register', [LoginController::class, 'register'])->name('register');
-});
 
-// 認証済みユーザーの取得
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    // ウィンドノート
+    Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
+    Route::post('/windNote', [WindNoteController::class, 'store'])->name('windNote.store');
+    Route::get('/windNote/{windNote}', [WindNoteController::class, 'show'])->name('windNote.show');
+    Route::put('/windNote/{windNote}', [WindNoteController::class, 'update'])->name('windNote.update');
+    Route::delete('/windNote/{windNote}', [WindNoteController::class, 'destroy'])->name('windNote.destroy');
+
+    // 質問
+    Route::get('/question', [QuestionController::class, 'index'])->name('question.index');
+    Route::post('/question', [QuestionController::class, 'store'])->name('question.store');
+    Route::get('/question/{question}', [QuestionController::class, 'show'])->name('question.show');
+    Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
+    Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
+
+    // 回答
+    Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
+
+    // カレンダー
+    Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
+    Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
 });
