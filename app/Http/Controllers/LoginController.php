@@ -37,7 +37,9 @@ class LoginController extends Controller
             'message' => 'Registration and login successful'
         ], 201);
     }
-
+    /**
+     * Handle an authentication attempt.
+     */
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -54,7 +56,7 @@ class LoginController extends Controller
             return response()->json([
                 'user' => $user,
                 'profile' => $userProfile,
-                'message' => 'login successful'
+                'message' => 'login succeessful'
             ]);
         }
 
@@ -63,10 +65,6 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        // 現在のトークンを無効化
-        $user = $request->user();
-        $user->tokens()->delete();
-
         Auth::logout();
 
         $request->session()->invalidate();
