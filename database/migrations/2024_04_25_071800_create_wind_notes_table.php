@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('wind_notes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('title')->comment('タイトル');
             $table->text('content')->comment('ノート内容');
             $table->dateTime('date')->nullable(true)->comment('日付');

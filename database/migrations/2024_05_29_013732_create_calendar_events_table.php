@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('calendar_events', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('title')->comment('イベントタイトル');
             $table->string('content')->nullable(true)->comment('イベント内容');
             $table->dateTime('start')->comment('開始日時');

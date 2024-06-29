@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->text('content')->comment('回答内容');
             $table->unsignedBigInteger('question_id');
             $table->timestamps();
