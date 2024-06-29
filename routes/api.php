@@ -33,6 +33,25 @@ Route::middleware(['web'])->group(function () {
             return $request->user();
         });
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::post('/user/profile', [UserProfileController::class, 'store'])->name('profile.store');
+
+
+        Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
+        Route::post('/windNote', [WindNoteController::class, 'store'])->name('windNote.store');
+        Route::get('/windNote/{windNote}', [WindNoteController::class, 'show'])->name('windNote.show');
+        Route::put('/windNote/{windNote}', [WindNoteController::class, 'update'])->name('windNote.update');
+        Route::delete('/windNote/{windNote}', [WindNoteController::class, 'destroy'])->name('windNote.destroy');
+
+        Route::get('/question', [QuestionController::class, 'index'])->name('question.index');
+        Route::post('/question', [QuestionController::class, 'store'])->name('question.store');
+        Route::get('/question/{question}', [QuestionController::class, 'show'])->name('question.show');
+        Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
+        Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
+
+        Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
+
+        Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
+        Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
     });
 });
 
@@ -46,21 +65,3 @@ Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->g
     });
 });
 // 他の認証が必要なルート
-Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
-Route::post('/windNote', [WindNoteController::class, 'store'])->name('windNote.store');
-Route::get('/windNote/{windNote}', [WindNoteController::class, 'show'])->name('windNote.show');
-Route::put('/windNote/{windNote}', [WindNoteController::class, 'update'])->name('windNote.update');
-Route::delete('/windNote/{windNote}', [WindNoteController::class, 'destroy'])->name('windNote.destroy');
-
-Route::get('/question', [QuestionController::class, 'index'])->name('question.index');
-Route::post('/question', [QuestionController::class, 'store'])->name('question.store');
-Route::get('/question/{question}', [QuestionController::class, 'show'])->name('question.show');
-Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
-Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
-
-Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
-
-Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
-Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
-
-Route::post('/user/profile', [UserProfileController::class, 'store'])->name('profile.store');
