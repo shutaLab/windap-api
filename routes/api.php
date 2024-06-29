@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarEventController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WindNoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,15 +24,15 @@ use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 Route::middleware(['web'])->group(function () {
     // 認証不要ルート
-    Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::post('register', [AuthController::class, 'register'])->name('register');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
 
     // 認証必要ルート
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/user', function (Request $request) {
             return $request->user();
         });
-        Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     });
 });
 
@@ -61,3 +62,5 @@ Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store')
 
 Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
 Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
+
+Route::post('/user/profile', [UserProfileController::class, 'store'])->name('profile.store');

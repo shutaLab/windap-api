@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('name')->comment('ユーザ名');
-            $table->string('grade')->comment('学年');
+            $table->integer('grade')->comment('学年');
             $table->string('sail_no')->comment('セールナンバー');
-            $table->string('introduction')->comment('自己紹介文');
+            $table->string('introduction')->nullable(true)->comment('自己紹介文');
             $table->string('profile_image')->nullable(true)->comment('プロフィール画像');
             $table->timestamps();
         });
