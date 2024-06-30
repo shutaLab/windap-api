@@ -10,6 +10,7 @@ class QuestionStoreAction
     public function __invoke(QuestionStoreRequest $request)
     {
         $validated = $request->validated();
+        $validated['user_id'] = $request->user()->id;
 
         $question = Question::create($validated);
 

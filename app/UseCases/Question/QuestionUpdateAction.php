@@ -11,9 +11,11 @@ class QuestionUpdateAction
     {
         $validated = $request->validated();
 
-        $question->update([
-            'content' => $validated['content']
-        ]);
+        if ($request->user()->id !== $question->user_id) {
+            return response()->json(['error' => 'You can only update your own books.'], 403);
+        }
+
+        $question->update($validated);
 
         return response()->json([
             'message' => '質問の編集に成功しました',

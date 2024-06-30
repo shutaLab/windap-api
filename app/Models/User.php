@@ -18,7 +18,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        // 'name',
         'email',
         'password',
     ];
@@ -51,5 +50,10 @@ class User extends Authenticatable
     public function windNotes()
     {
         return $this->hasMany(WindNote::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 }
