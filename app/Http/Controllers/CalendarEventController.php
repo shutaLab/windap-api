@@ -30,7 +30,7 @@ class CalendarEventController extends Controller
         return $action($request, $calendarEvent);
     }
 
-    public function delete(CalendarEvent $calendarEvent, CalendarEventDeleteAction $action)
+    public function destroy(CalendarEvent $calendarEvent, CalendarEventDeleteAction $action)
     {
         return $action($calendarEvent);
     }
