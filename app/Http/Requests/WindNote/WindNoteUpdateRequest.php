@@ -22,7 +22,6 @@ class WindNoteUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-
             'title' => [
                 'required',
                 'string',

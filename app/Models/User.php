@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserProfile::class);
     }
+
+    public function windNotes()
+    {
+        return $this->hasMany(WindNote::class);
+    }
 }

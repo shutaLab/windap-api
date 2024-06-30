@@ -54,14 +54,3 @@ Route::middleware(['web'])->group(function () {
         Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
     });
 });
-
-
-
-// 認証必要ルート
-Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->group(function () {
-
-    Route::get('check-auth', function (Request $request) {
-        return response()->json(['authenticated' => true], 200);
-    });
-});
-// 他の認証が必要なルート

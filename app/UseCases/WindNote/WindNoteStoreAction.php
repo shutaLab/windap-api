@@ -10,6 +10,7 @@ class WindNoteStoreAction
     public function __invoke(WindNoteStoreRequest $request)
     {
         $validated = $request->validated();
+        $validated['user_id'] = $request->user()->id;
 
         $windNote = WindNote::create($validated);
 
