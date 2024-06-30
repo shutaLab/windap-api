@@ -49,6 +49,8 @@ Route::middleware(['web'])->group(function () {
         Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
 
         Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
+        Route::put('/answer/{answer}', [AnswerController::class, 'update'])->name('answer.update');
+        Route::delete('/answer/{answer}', [AnswerController::class, 'destroy'])->name('answer.destroy');
 
         Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
         Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');

@@ -9,12 +9,10 @@ class AnswerStoreAction
 {
     public function __invoke(AnswerStoreRequest $request)
     {
-        $validate = $request->validated();
+        $validated = $request->validated();
+        $validated['user_id'] = $request->user()->id;
 
-        $answer = Answer::create([
-            'content' => $validate['content'],
-            'question_id' => $validate['question_id'],
-        ]);
+        $answer = Answer::create($validated);
 
         return response()->json([
             'message' => '回答の投稿に成功しました',
