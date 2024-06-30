@@ -10,6 +10,8 @@ class CalendarEventStoreAction
     public function __invoke(CalendarEventStoreRequest $request)
     {
         $validated = $request->validated();
+        $validated['user_id'] = $request->user()->id;
+
 
         $calendarEvent = CalendarEvent::create($validated);
 
