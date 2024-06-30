@@ -4,6 +4,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarEventController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NoteFavoriteController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WindNoteController;
@@ -56,5 +57,8 @@ Route::middleware(['web'])->group(function () {
         Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
         Route::put('/calendar/{calendar}', [CalendarEventController::class, 'update'])->name('calendarEvent.update');
         Route::delete('/calendar/{calendar}', [CalendarEventController::class, 'destroy'])->name('calendarEvent.destroy');
+
+        Route::get('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'show'])->name('noteFavorite.show');
+        Route::put('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'update'])->name('noteFavorite.update');
     });
 });

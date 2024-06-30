@@ -20,4 +20,9 @@ class WindNote extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function noteFavorites()
+    {
+        return $this->hasMany(NoteFavorite::class);
+    }
 }
