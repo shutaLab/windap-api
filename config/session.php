@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => "serene-hollows-70259-0e810f44b7df.herokuapp.com",
 
     /*
     |--------------------------------------------------------------------------
