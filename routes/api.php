@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarEventController;
+use App\Http\Controllers\DepartureController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NoteFavoriteController;
 use App\Http\Controllers\QuestionController;
@@ -60,5 +61,7 @@ Route::middleware(['web'])->group(function () {
 
         Route::get('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'show'])->name('noteFavorite.show');
         Route::put('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'update'])->name('noteFavorite.update');
+
+        Route::get('/departure', [DepartureController::class, 'index'])->name('noteFavorite.index');
     });
 });
