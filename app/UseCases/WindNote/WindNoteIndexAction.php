@@ -9,7 +9,7 @@ class WindNoteIndexAction
 {
     public function __invoke(WindNoteIndexRequest $request)
     {
-        $windNotes = WindNote::query()
+        $windNotes = WindNote::with('noteFavorites')
             ->orderBy('created_at', 'desc')
             ->get();
 

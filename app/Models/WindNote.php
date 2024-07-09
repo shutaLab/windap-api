@@ -23,6 +23,6 @@ class WindNote extends Model
 
     public function noteFavorites()
     {
-        return $this->hasMany(NoteFavorite::class);
+        return $this->hasMany(NoteFavorite::class, 'note_id');
     }
 }
