@@ -15,16 +15,11 @@ class LoginAction
         if (!Auth::attempt($credentials)) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
-
-        $request->session()->regenerate();
-
         $user = Auth::user();
 
-        $user_profile = $user->userProfile;
         return response()->json([
             'message' => 'Login successful',
             'user' => $user,
-            'user_profile' => $user_profile
         ], 200);
     }
 }
