@@ -62,6 +62,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'show'])->name('noteFavorite.show');
         Route::put('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'update'])->name('noteFavorite.update');
 
-        Route::get('/departure', [DepartureController::class, 'index'])->name('noteFavorite.index');
+        Route::get('/departure', [DepartureController::class, 'index'])->name('departure.index');
+        Route::post('/departure', [DepartureController::class, 'store'])->name('departure.store');
     });
 });

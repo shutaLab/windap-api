@@ -19,8 +19,8 @@ class DepartureFactory extends Factory
     public function definition(): array
     {
         return [
-            'start' => '2024-07-09 10:00:00',
-            'end' => '2024-07-09 12:00:00',
+            'start' => now()->toIso8601String(),
+            'end' => now()->addHours(2)->toIso8601String(),
             'description' => $this->faker->sentence,
         ];
     }
