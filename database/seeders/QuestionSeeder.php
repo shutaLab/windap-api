@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Question;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class QuestionSeeder extends Seeder
@@ -12,6 +13,14 @@ class QuestionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $users = User::all();
+
+        for ($i = 0; $i < 5; ++$i) {
+            $authUser = $users->random();
+
+            Question::factory()->create([
+                'user_id' => $authUser->id,
+            ]);
+        }
     }
 }

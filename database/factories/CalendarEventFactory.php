@@ -16,12 +16,14 @@ class CalendarEventFactory extends Factory
      */
     public function definition(): array
     {
+        $start = $this->faker->dateTimeBetween('now', '+30 days');
+        $end = $this->faker->dateTimeBetween($start, '+30 days');
         return [
             'title' => $this->faker->realText(rand(10, 15)),
             'content' => $this->faker->realText(rand(10, 20)),
-            'start' => now(),
-            'end' => now(),
-            'is_absent' => true
+            'start' => $start,
+            'end' => $end,
+            'is_absent' => $this->faker->boolean(50)
         ];
     }
 }

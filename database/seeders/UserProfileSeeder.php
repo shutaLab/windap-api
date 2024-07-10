@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +14,14 @@ class UserProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $users = User::all();
+
+        for ($i = 0; $i < 3; ++$i) {
+            $authUser = $users->random();
+
+            UserProfile::factory()->create([
+                'user_id' => $authUser->id,
+            ]);
+        }
     }
 }

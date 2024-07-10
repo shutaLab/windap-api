@@ -14,9 +14,20 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('password'),
+        // 特定のメールアドレスとパスワードを持つユーザーを3人分作成
+        User::factory()->create([
+            'email' => 'user1@mail.com',
+            'password' => Hash::make('password')
+        ]);
+
+        User::factory()->create([
+            'email' => 'user2@mail.com',
+            'password' => Hash::make('password')
+        ]);
+
+        User::factory()->create([
+            'email' => 'user3@mail.com',
+            'password' => Hash::make('password')
         ]);
     }
 }
