@@ -64,6 +64,7 @@ Route::middleware(['web'])->group(function () {
 
         Route::get('/departures', [DepartureController::class, 'index'])->name('departure.index');
         Route::post('/departure', [DepartureController::class, 'store'])->name('departure.store');
+        Route::get('/departure/{departure}', [DepartureController::class, 'show'])->name('departure.show');
         Route::put('/departure/{departure}', [DepartureController::class, 'update'])->name('departure.update');
     });
 });
