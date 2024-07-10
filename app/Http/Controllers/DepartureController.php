@@ -6,6 +6,7 @@ use App\Http\Requests\Departure\DepartureShowRequest;
 use App\Http\Requests\Departure\DepartureStoreRequest;
 use App\Http\Requests\Departure\DepartureUpdateRequest;
 use App\Models\Departure;
+use App\UseCases\Departure\DepartureDeleteAction;
 use App\UseCases\Departure\DepartureIndexAction;
 use App\UseCases\Departure\DepartureShowAction;
 use App\UseCases\Departure\DepartureStoreAction;
@@ -32,5 +33,10 @@ class DepartureController extends Controller
     public function update(DepartureUpdateRequest $request, Departure $departure, DepartureUpdateAction $action)
     {
         return $action($request, $departure);
+    }
+
+    public function destroy(Departure $departure, DepartureDeleteAction $action)
+    {
+        return $action($departure);
     }
 }
