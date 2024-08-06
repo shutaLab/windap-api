@@ -6,6 +6,7 @@ use App\Http\Controllers\CalendarEventController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NoteFavoriteController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WindNoteController;
 use Illuminate\Http\Request;
@@ -35,6 +36,9 @@ Route::middleware(['web'])->group(function () {
         });
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::post('/user/profile', [UserProfileController::class, 'store'])->name('profile.store');
+
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/gradeFilter', [UserController::class, 'gradeFilter'])->name('users.index');
 
 
         Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
