@@ -18,9 +18,8 @@ class UserProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
             'name' => $this->faker->realText(rand(10, 20)),
-            'grade' => '3',
+            'grade' => $this->faker->numberBetween(1, 4),
             'sail_no' => '31-50',
             'introduction' => $this->faker->realText(rand(10, 20))
         ];
