@@ -17,7 +17,6 @@ class UserGradeFilterActionTest extends TestCase
         $user = User::first();
 
         $response = $this->actingAs($user)->getJson('/api/users/gradeFilter');
-        $response->dump();
 
         $response->assertStatus(200);
     }
