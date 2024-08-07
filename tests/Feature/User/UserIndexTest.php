@@ -16,7 +16,6 @@ class UserIndexTest extends TestCase
         $user = User::first();
 
         $response = $this->actingAs($user)->getJson('/api/users');
-        $response->dump();
 
         $response->assertStatus(200);
     }
