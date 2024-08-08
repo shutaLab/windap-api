@@ -19,7 +19,6 @@ class AnswerFactory extends Factory
     {
         return [
             'content' => $this->faker->realText(rand(10, 20)),
-            'question_id' => Question::factory()
         ];
     }
 }
