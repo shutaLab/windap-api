@@ -17,10 +17,12 @@ class UserProfileFactory extends Factory
      */
     public function definition(): array
     {
+        $firstNumber = $this->faker->numberBetween(1, 99);
+        $secondNumber = $this->faker->numberBetween(1, 99);
         return [
             'name' => $this->faker->realText(rand(10, 20)),
             'grade' => $this->faker->numberBetween(1, 4),
-            'sail_no' => '31-50',
+            'sail_no' => "{$firstNumber}-{$secondNumber}",
             'introduction' => $this->faker->realText(rand(10, 20))
         ];
     }
