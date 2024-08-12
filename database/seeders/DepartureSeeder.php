@@ -37,7 +37,6 @@ class DepartureSeeder extends Seeder
 
             Departure::factory()->create([
                 'user_id' => $authUser->id,
-                'intra_user_id' => $intraUserId,
             ]);
         }
     }

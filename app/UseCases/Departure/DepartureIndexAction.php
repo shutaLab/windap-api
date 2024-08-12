@@ -9,7 +9,9 @@ class DepartureIndexAction
 {
     public function __invoke(DepartureIndexRequest $request)
     {
-        $departures = Departure::orderBy('created_at', 'desc')->get();
+        $departures = Departure::with(['user.userProfile'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return $departures;
     }

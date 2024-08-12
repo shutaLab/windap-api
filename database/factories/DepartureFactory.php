@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +18,9 @@ class DepartureFactory extends Factory
     public function definition(): array
     {
         return [
-            'start' => now()->toIso8601String(),
-            'end' => now()->addHours(2)->toIso8601String(),
+            'user_id' => User::factory(),
+            'start' => now()->addHours(3)->toIso8601String(),
+            'end' => now()->addHours(5)->toIso8601String(),
             'description' => $this->faker->sentence,
         ];
     }

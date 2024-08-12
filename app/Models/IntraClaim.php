@@ -5,26 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Departure extends Model
+class IntraClaim extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'intra_user_id',
-        'start',
-        'end',
-        'description',
-    ];
-
-    protected $casts = [
-        'start' => 'datetime',
-        'end' => 'datetime',
+        'user_id',
+        'departure_id',
+        'status',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_');
     }
 
     public function intraUser()
@@ -32,8 +26,8 @@ class Departure extends Model
         return $this->belongsTo(User::class, 'intra_user_id');
     }
 
-    public function intraClaims()
+    public function departure()
     {
-        return $this->hasMany(User::class, 'intra_claim_id');
+        return $this->belongsTo(Departure::class, 'departure_id');
     }
 }
