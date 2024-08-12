@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
                 WindNoteSeeder::class,
                 QuestionSeeder::class,
                 AnswerSeeder::class,
+                IntraClaimSeeder::class
         ]);
     }
 }

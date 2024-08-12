@@ -81,4 +81,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Departure::class, 'intra_user_id');
     }
+
+    public function claims()
+    {
+        return $this->hasMany(IntraClaim::class, 'user_id');
+    }
+
+    public function intraClaims()
+    {
+        return $this->hasMany(IntraClaim::class, 'intra_user_id');
+    }
 }
