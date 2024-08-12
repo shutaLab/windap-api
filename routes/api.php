@@ -4,12 +4,14 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarEventController;
 use App\Http\Controllers\DepartureController;
+use App\Http\Controllers\IntraClaimController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NoteFavoriteController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WindNoteController;
+use App\Models\IntraClaim;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
@@ -71,5 +73,10 @@ Route::middleware(['web'])->group(function () {
         Route::get('/departure/{departure}', [DepartureController::class, 'show'])->name('departures.show');
         Route::put('/departure/{departure}', [DepartureController::class, 'update'])->name('departures.update');
         Route::delete('/departure/{departure}', [DepartureController::class, 'destroy'])->name('departures.destroy');
+
+        // Route::post('/departure/{departure}/createClaim', [IntraClaimController::class, 'createClaim'])->name('intraClaim.createClaim');
+        // Route::post('/departure/{departure}/approveClaim', [IntraClaimController::class, 'approveClaim'])->name('intraClaim.approveClaim');
+        // Route::post('/departure/{departure}/rejectClaim', [IntraClaimController::class, 'rejectClaim'])->name('intraClaim.rejectClaim');
+        Route::post('/approveClaim/{intraClaim}', [IntraClaimController::class, 'approveClaim'])->name('intraClaim.approveClaim');
     });
 });
