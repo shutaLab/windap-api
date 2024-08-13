@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartureController;
 use App\Http\Controllers\IntraClaimController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NoteFavoriteController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
@@ -74,9 +75,10 @@ Route::middleware(['web'])->group(function () {
         Route::put('/departure/{departure}', [DepartureController::class, 'update'])->name('departures.update');
         Route::delete('/departure/{departure}', [DepartureController::class, 'destroy'])->name('departures.destroy');
 
-        // Route::post('/departure/{departure}/createClaim', [IntraClaimController::class, 'createClaim'])->name('intraClaim.createClaim');
-        // Route::post('/departure/{departure}/approveClaim', [IntraClaimController::class, 'approveClaim'])->name('intraClaim.approveClaim');
-        // Route::post('/departure/{departure}/rejectClaim', [IntraClaimController::class, 'rejectClaim'])->name('intraClaim.rejectClaim');
         Route::post('/approveClaim/{intraClaim}', [IntraClaimController::class, 'approveClaim'])->name('intraClaim.approveClaim');
+
+        Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+        Route::get('/notification/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
+        Route::post('/notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.readAll');
     });
 });
