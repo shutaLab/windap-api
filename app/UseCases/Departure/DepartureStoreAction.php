@@ -14,20 +14,27 @@ class DepartureStoreAction
     public function __invoke(DepartureStoreRequest $request)
     {
         $validated = $request->validated();
-        $validated['user_id'] = $request->user()->id;
 
+        // ログインユーザ(イントラを依頼するユーザ)
+        $departureUser = $request->user();
+        $departureUserName = $departureUser->userProfile->name;
+        $validated['user_id'] = $departureUser->id;
+
+         // 上級生(イントラを依頼されるユーザ)
+        $intraUser = User::find($validated['intra_user_id']);
+        $intraUserName = $intraUser->userProfile->name;
+        
         $departure = Departure::create(Arr::except($validated, ['intra_user_id']));
 
         $intraClaim = IntraClaim::create([
-            // 下級生(ログインユーザ)
-            'user_id' => $request->user()->id,
-            // 上級生
-            'intra_user_id' => $validated['intra_user_id'],
+            'user_id' => $departureUser->id,
+            'intra_user_id' => $intraUser->id,
             'departure_id' => $departure->id,
         ]);
 
+        $coment = "{$departureUserName} id: {$departureUser->id}が{$intraUserName} id:{$intraUser->id}にイントラを依頼しました";
         $intraUser = User::find($validated['intra_user_id']);
-        $intraUser->notify(new IntraClaimNotification($intraClaim));
+        $intraUser->notify(new IntraClaimNotification($intraClaim, $coment));
 
 
         return response()->json([

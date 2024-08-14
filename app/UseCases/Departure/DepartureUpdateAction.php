@@ -12,7 +12,9 @@ class DepartureUpdateAction
         $validated = $request->validated();
 
         if ($request->user()->id !== $departure->user_id) {
-            return response()->json(['error' => 'You can only update your own departure.'], 403);
+            return response()->json([
+                'message' => '出艇の編集をする権限がありません.'
+            ], 403);
         }
 
         $departure->update($validated);

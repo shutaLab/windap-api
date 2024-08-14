@@ -12,7 +12,9 @@ class AnswerUpdateAction
         $validated = $request->validated();
 
         if ($request->user()->id !== $answer->user_id) {
-            return response()->json(['error' => 'You can only update your own books.'], 403);
+            return response()->json([
+                'message' => '回答の編集をする権限がありません.'
+            ], 403);
         }
 
         $answer->update($validated);

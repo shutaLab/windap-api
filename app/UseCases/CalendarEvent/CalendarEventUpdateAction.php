@@ -12,7 +12,9 @@ class CalendarEventUpdateAction
         $validated = $request->validated();
 
         if ($request->user()->id !== $calendarEvent->user_id) {
-            return response()->json(['error' => 'You can only update your own books.'], 403);
+            return response()->json([
+                'message' => 'イベントの編集をする権限がありません'
+            ], 403);
         }
 
         $calendarEvent->update($validated);

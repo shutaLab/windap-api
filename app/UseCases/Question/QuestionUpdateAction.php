@@ -12,7 +12,9 @@ class QuestionUpdateAction
         $validated = $request->validated();
 
         if ($request->user()->id !== $question->user_id) {
-            return response()->json(['error' => 'You can only update your own books.'], 403);
+            return response()->json(
+                ['error' => '質問を編集する権限がありません'
+            ], 403);
         }
 
         $question->update($validated);
