@@ -12,7 +12,9 @@ class WindNoteUpdateAction
         $validated = $request->validated();
 
         if ($request->user()->id !== $windNote->user_id) {
-            return response()->json(['error' => 'You can only update your own books.'], 403);
+            return response()->json([
+                'message' =>  'ノートを編集する権限がありません'
+                ], 403);
         }
 
         $windNote->update($validated);
