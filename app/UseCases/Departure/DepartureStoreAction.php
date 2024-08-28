@@ -20,26 +20,26 @@ class DepartureStoreAction
         $departureUserName = $departureUser->userProfile->name;
         $validated['user_id'] = $departureUser->id;
 
-         // 上級生(イントラを依頼されるユーザ)
-        $intraUser = User::find($validated['intra_user_id']);
-        $intraUserName = $intraUser->userProfile->name;
-        
+        // 上級生(イントラを依頼されるユーザ)の取得
+        $intraUser = User::find($validated['intra_user_id'] ?? null);
+        $intraUserName = $intraUser?->userProfile?->name;
+
         $departure = Departure::create(Arr::except($validated, ['intra_user_id']));
 
-        $intraClaim = IntraClaim::create([
+        $intraClaim = $intraUser ? IntraClaim::create([
             'user_id' => $departureUser->id,
             'intra_user_id' => $intraUser->id,
             'departure_id' => $departure->id,
-        ]);
+        ]) : null;
 
-        $coment = "{$departureUserName} id: {$departureUser->id}が{$intraUserName} id:{$intraUser->id}にイントラを依頼しました";
-        $intraUser = User::find($validated['intra_user_id']);
-        $intraUser->notify(new IntraClaimNotification($intraClaim, $coment));
-
+        $intraUser?->notify(new IntraClaimNotification(
+            $intraClaim, 
+            "{$departureUserName} id: {$departureUser->id}が{$intraUserName} id:{$intraUser?->id}にイントラを依頼しました"
+        ));
 
         return response()->json([
             'message' => '出艇の作成に成功しました',
-            'data' => [$departure,$intraClaim]
+            'data' => [$departure, $intraClaim]
         ], 200);
     }
 }
