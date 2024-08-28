@@ -28,11 +28,11 @@ class DepartureUpdateRequest extends FormRequest
             ],
             'start' => [
                 'required',
-                'date'
+                'date_format:Y-m-d\TH:i:sP'
             ],
             'end' => [
                 'required',
-                'date'
+                'date_format:Y-m-d\TH:i:sP'
             ],
             'description' => [
                 'nullable',
