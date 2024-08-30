@@ -26,8 +26,7 @@ class IntraClaimNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'intra_user' => User::find($this->intraClaim->intra_user_id),
-            'departure_user' => User::find($this->intraClaim->user_id),
+            'intraClaim' => $this->$intraClaim,
             'comment' => $this->comment
         ];
     }

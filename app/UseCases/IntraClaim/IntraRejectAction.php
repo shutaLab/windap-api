@@ -27,7 +27,7 @@ class IntraRejectAction
             ], 403);
         }
 
-        $comment = "{$intraUserName} id:{$intraUser->id}が{$departureUserName} id: {$departureUser->id}のイントラ依頼を取り下げました";
+        $comment = "{$intraUserName}さんがイントラ依頼を取り下げました";
         
         $departureUser->notify(new IntraClaimNotification($intraClaim, $comment));
 
