@@ -34,7 +34,7 @@ class DepartureStoreAction
 
         $intraUser?->notify(new IntraClaimNotification(
             $intraClaim, 
-            "{$departureUserName} id: {$departureUser->id}が{$intraUserName} id:{$intraUser?->id}にイントラを依頼しました"
+            "{$departureUserName}さんからイントラ依頼が届いています"
         ));
 
         return response()->json([

@@ -30,9 +30,10 @@ class IntraApproveClaimAction
 
         $departure->update(['intra_user_id' => $intraUser->id]);
 
-        $comment = "{$intraUserName} id:{$intraUser->id}が{$departureUserName} id:{$departureUser->id}のイントラ依頼を承諾しました";
+        $comment = "{$intraUserName}さんと{$departureUserName}のイントラが確定しました";
 
         $departureUser->notify(new IntraClaimNotification($intraClaim, $comment));
+        $intraUser->notify(new IntraClaimNotification($intraClaim, $comment));
 
         $intraClaim->delete();
         $departure->refresh();
