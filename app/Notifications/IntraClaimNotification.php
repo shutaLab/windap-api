@@ -2,7 +2,6 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
@@ -10,9 +9,10 @@ class IntraClaimNotification extends Notification
 {
     use Queueable;
 
-    protected $intraClaim, $comment;
+    protected $intraClaim;
+    protected $comment;
 
-    public function __construct($intraClaim,$comment = null)
+    public function __construct($intraClaim, $comment = null)
     {
         $this->intraClaim = $intraClaim;
         $this->comment = $comment;
@@ -26,7 +26,7 @@ class IntraClaimNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'intraClaim' => $this->$intraClaim,
+            'intraClaim' => $this->intraClaim,
             'comment' => $this->comment
         ];
     }
