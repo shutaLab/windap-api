@@ -12,10 +12,11 @@ class IntraClaimNotification extends Notification
     protected $intraClaim;
     protected $comment;
 
-    public function __construct($intraClaim, $comment = null)
+    public function __construct($intraClaim, $comment, $type = null)
     {
         $this->intraClaim = $intraClaim;
         $this->comment = $comment;
+        $this->type = $type;
     }
 
     public function via($notifiable)
@@ -27,7 +28,8 @@ class IntraClaimNotification extends Notification
     {
         return [
             'intraClaim' => $this->intraClaim,
-            'comment' => $this->comment
+            'comment' => $this->comment,
+            'type' => $this->type
         ];
     }
 }
