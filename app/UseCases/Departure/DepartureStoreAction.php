@@ -34,8 +34,11 @@ class DepartureStoreAction
 
         $intraUser?->notify(new IntraClaimNotification(
             $intraClaim, 
-            "{$departureUserName}さんからイントラ依頼が届いています"
+            "{$departureUserName}さんからイントラ依頼が届いています",
+            'request'
         ));
+
+        $intraClaim?->load('departure');
 
         return response()->json([
             'message' => '出艇の作成に成功しました',
