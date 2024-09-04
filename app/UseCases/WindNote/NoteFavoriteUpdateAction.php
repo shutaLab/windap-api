@@ -2,6 +2,7 @@
 
 namespace App\UseCases\WindNote;
 
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\NoteFavorite;
 use App\Models\WindNote;
 use Illuminate\Support\Facades\Auth;
@@ -32,9 +33,6 @@ class NoteFavoriteUpdateAction
             'note_id' => $windNote->id
         ]);
 
-        return response()->json([
-            'message' => 'いいねをしました',
-            'favorite' => $newFavorite
-        ], 200);
+        return new SuccessResource('ノートの更新に成功しました');
     }
 }

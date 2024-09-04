@@ -2,6 +2,7 @@
 
 namespace App\UseCases\WindNote;
 
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\WindNote;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +20,6 @@ class WindNoteDeleteAction
 
         $windNote->delete();
 
-        return response()->json([
-            'message' => 'ノートを削除しました',
-            'data' => $windNote
-        ], 200);
+        return new SuccessResource('ノートの削除に成功しました');
     }
 }

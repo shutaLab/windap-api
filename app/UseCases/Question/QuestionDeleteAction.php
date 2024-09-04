@@ -2,6 +2,7 @@
 
 namespace App\UseCases\Question;
 
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +20,6 @@ class QuestionDeleteAction
 
         $question->delete();
 
-        return response()->json([
-            'message' => '質問を削除しました',
-            'data' => $question
-        ], 200);
+        return new SuccessResource('質問の削除に成功しました');
     }
 }

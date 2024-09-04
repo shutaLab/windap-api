@@ -3,6 +3,7 @@
 namespace App\UseCases\NotifiCation;
 
 use App\Http\Requests\NotifiCation\NotificationReadAllRequest;
+use App\Http\Resources\Common\SuccessResource;
 
 class NotificationReadAllAction
 {
@@ -12,8 +13,6 @@ class NotificationReadAllAction
 
         $notifications->markAsRead();
 
-        return response()->json([
-            'notification' => $notifications,
-        ], 200);
+        return new SuccessResource('通知を全て既読にしました');
     }
 }

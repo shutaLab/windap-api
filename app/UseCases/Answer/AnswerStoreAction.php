@@ -3,6 +3,7 @@
 namespace App\UseCases\Answer;
 
 use App\Http\Requests\Answer\AnswerStoreRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\Answer;
 
 class AnswerStoreAction
@@ -12,11 +13,8 @@ class AnswerStoreAction
         $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
 
-        $answer = Answer::create($validated);
+        Answer::create($validated);
 
-        return response()->json([
-            'message' => '回答の投稿に成功しました',
-            'data' => $answer
-        ], 200);
+        return new SuccessResource('回答の作成に成功しました');
     }
 }

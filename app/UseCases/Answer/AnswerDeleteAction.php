@@ -2,6 +2,7 @@
 
 namespace App\UseCases\Answer;
 
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\Answer;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +20,6 @@ class AnswerDeleteAction
 
         $answer->delete();
 
-        return response()->json([
-            'message' => 'ノートを削除しました',
-            'data' => $answer
-        ], 200);
+        return new SuccessResource('回答の削除に成功しました');
     }
 }

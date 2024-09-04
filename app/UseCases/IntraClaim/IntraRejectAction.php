@@ -3,6 +3,7 @@
 namespace App\UseCases\IntraClaim;
 
 use App\Http\Requests\IntraClaim\IntraRejectRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\IntraClaim;
 use App\Models\User;
 use App\Notifications\IntraClaimNotification;
@@ -33,9 +34,6 @@ class IntraRejectAction
 
         $intraClaim->delete();
 
-        return response()->json([
-            'message' => 'イントラ依頼を取り下げました',
-            'data' => $intraClaim
-        ], 200);
+        return new SuccessResource('イントラ依頼を取り下げました');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\UseCases\Auth;
 
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,9 +16,6 @@ class RegisterAction
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json([
-            'message' => 'Register  successful',
-            'user' => $user
-        ]);
+        return new SuccessResource('ユーザ新規登録に成功しました');
     }
 }

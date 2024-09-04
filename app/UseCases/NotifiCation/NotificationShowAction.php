@@ -3,6 +3,7 @@
 namespace App\UseCases\NotifiCation;
 
 use App\Http\Requests\NotifiCation\NotificationShowRequest;
+use App\Http\Resources\NotificationResource;
 use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationShowAction
@@ -17,9 +18,6 @@ class NotificationShowAction
             $notification->markAsRead();
         }
 
-        // 通知の詳細を返す
-        return response()->json([
-            'notification' => $notification,
-        ], 200);
+        return response()->json(new NotificationResource($notification));
     }
 }

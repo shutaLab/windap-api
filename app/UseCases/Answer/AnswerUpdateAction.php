@@ -3,6 +3,7 @@
 namespace App\UseCases\Answer;
 
 use App\Http\Requests\Answer\AnswerUpdateRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\Answer;
 
 class AnswerUpdateAction
@@ -19,9 +20,6 @@ class AnswerUpdateAction
 
         $answer->update($validated);
 
-        return response()->json([
-            'message' => '回答の編集に成功しました',
-            'data' =>  $answer,
-        ], 200);
+        return new SuccessResource('回答の更新に成功しました');
     }
 }

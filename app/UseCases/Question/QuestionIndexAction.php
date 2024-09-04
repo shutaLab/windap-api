@@ -3,16 +3,17 @@
 namespace App\UseCases\Question;
 
 use App\Http\Requests\Question\QuestionIndexRequest;
+use App\Http\Resources\QuestionResource;
 use App\Models\Question;
 
 class QuestionIndexAction
 {
     public function __invoke(QuestionIndexRequest $request)
     {
-        $questions = Question::with('answers')
+        $questions = Question::with('user.userProfile','answers')
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return response()->json($questions);
+        return response()->json(QuestionResource::collection($questions));
     }
 }

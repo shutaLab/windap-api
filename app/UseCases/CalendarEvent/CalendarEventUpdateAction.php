@@ -3,6 +3,7 @@
 namespace App\UseCases\CalendarEvent;
 
 use App\Http\Requests\CalendarEvent\CalendarEventUpdateRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\CalendarEvent;
 
 class CalendarEventUpdateAction
@@ -19,9 +20,6 @@ class CalendarEventUpdateAction
 
         $calendarEvent->update($validated);
 
-        return response()->json([
-            'message' => 'カレンダーイベントの編集に成功しました',
-            'data' =>  $calendarEvent,
-        ], 200);
+        return new SuccessResource('カレンダーイベントの更新に成功しました');
     }
 }

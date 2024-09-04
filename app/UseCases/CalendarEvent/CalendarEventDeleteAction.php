@@ -3,6 +3,7 @@
 namespace App\UseCases\CalendarEvent;
 
 use App\Http\Requests\CalendarEvent\CalendarEventDeleteRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\CalendarEvent;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,9 +21,6 @@ class CalendarEventDeleteAction
 
         $calendarEvent->delete();
 
-        return response()->json([
-            'message' => 'ノートを削除しました',
-            'data' => $calendarEvent
-        ], 200);
+        return new SuccessResource('カレンダーイベントの削除に成功しました');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\UseCases\User;
 
 use App\Http\Requests\User\UserIndexRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 
 class UserIndexAction
@@ -11,6 +12,6 @@ class UserIndexAction
     {
         $users = User::with('userProfile')->get();
 
-        return response()->json($users);
+        return response()->json(UserResource::collection($users));
     }
 }

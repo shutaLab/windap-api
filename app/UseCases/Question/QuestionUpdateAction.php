@@ -3,6 +3,7 @@
 namespace App\UseCases\Question;
 
 use App\Http\Requests\Question\QuestionUpdateRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\Question;
 
 class QuestionUpdateAction
@@ -19,9 +20,6 @@ class QuestionUpdateAction
 
         $question->update($validated);
 
-        return response()->json([
-            'message' => '質問の編集に成功しました',
-            'data' => $question
-        ], 200);
+        return new SuccessResource('質問の更新に成功しました');
     }
 }

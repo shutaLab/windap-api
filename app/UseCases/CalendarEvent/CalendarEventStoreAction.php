@@ -3,6 +3,7 @@
 namespace App\UseCases\CalendarEvent;
 
 use App\Http\Requests\CalendarEvent\CalendarEventStoreRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\CalendarEvent;
 
 class CalendarEventStoreAction
@@ -15,9 +16,6 @@ class CalendarEventStoreAction
 
         $calendarEvent = CalendarEvent::create($validated);
 
-        return response()->json([
-            'message' => 'イベントの作成に成功しました',
-            'data' => $calendarEvent
-        ], 200);
+        return new SuccessResource('カレンダーイベントの作成に成功しました');
     }
 }
