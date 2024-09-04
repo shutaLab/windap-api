@@ -3,6 +3,7 @@
 namespace App\UseCases\Question;
 
 use App\Http\Requests\Question\QuestionStoreRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\Question;
 
 class QuestionStoreAction
@@ -14,9 +15,6 @@ class QuestionStoreAction
 
         $question = Question::create($validated);
 
-        return response()->json([
-            'message' => '質問の投稿に成功しました',
-            'data' => $question
-        ], 200);
+        return new SuccessResource('質問の作成に成功しました');
     }
 }

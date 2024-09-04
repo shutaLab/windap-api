@@ -3,6 +3,7 @@
 namespace App\UseCases\IntraClaim;
 
 use App\Http\Requests\IntraClaim\IntraApproveClaimRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\Departure;
 use App\Models\IntraClaim;
 use App\Models\User;
@@ -38,9 +39,6 @@ class IntraApproveClaimAction
         $intraClaim->delete();
         $departure->refresh();
 
-        return response()->json([
-            'message' => 'イントラ依頼を承諾しました',
-            'data' => $departure
-        ], 200);
+        return new SuccessResource('イントラを承諾しました');
     }
 }

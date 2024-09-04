@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Http\Resources\IntraClaimResource;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
@@ -11,6 +12,7 @@ class IntraClaimNotification extends Notification
 
     protected $intraClaim;
     protected $comment;
+    protected $type;
 
     public function __construct($intraClaim, $comment, $type = null)
     {
@@ -26,8 +28,9 @@ class IntraClaimNotification extends Notification
 
     public function toDatabase($notifiable)
     {
+        $this->intraClaim->load('departure', 'user.userProfile');
         return [
-            'intraClaim' => $this->intraClaim,
+            'intraClaim' => new IntraClaimResource($this->intraClaim),
             'comment' => $this->comment,
             'type' => $this->type
         ];

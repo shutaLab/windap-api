@@ -3,6 +3,7 @@
 namespace App\UseCases\User;
 
 use App\Http\Requests\User\ProfileStoreRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\UserProfile;
 
 class ProfileStoreAction
@@ -13,9 +14,6 @@ class ProfileStoreAction
 
         $profile = UserProfile::create($validated);
 
-        return response()->json([
-            'message' => 'プロフィールの投稿に成功しました',
-            'profile' => $profile
-        ], 200);
+        return new SuccessResource('プロフィール登録に成功しました');
     }
 }

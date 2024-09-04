@@ -3,6 +3,9 @@
 namespace App\UseCases\Departure;
 
 use App\Http\Requests\Departure\DepartureStoreRequest;
+use App\Http\Resources\Common\SuccessResource;
+use App\Http\Resources\DepartureResource;
+use App\Http\Resources\IntraClaimResource;
 use App\Models\Departure;
 use App\Models\IntraClaim;
 use App\Models\User;
@@ -22,7 +25,6 @@ class DepartureStoreAction
 
         // 上級生(イントラを依頼されるユーザ)の取得
         $intraUser = User::find($validated['intra_user_id'] ?? null);
-        $intraUserName = $intraUser?->userProfile?->name;
 
         $departure = Departure::create(Arr::except($validated, ['intra_user_id']));
 
@@ -32,17 +34,13 @@ class DepartureStoreAction
             'departure_id' => $departure->id,
         ]) : null;
 
+
         $intraUser?->notify(new IntraClaimNotification(
             $intraClaim, 
             "{$departureUserName}さんからイントラ依頼が届いています",
             'request'
         ));
-
-        $intraClaim?->load('departure');
-
-        return response()->json([
-            'message' => '出艇の作成に成功しました',
-            'data' => [$departure, $intraClaim]
-        ], 200);
+        
+        return new SuccessResource('出艇の作成に成功しました');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\UseCases\Auth;
 
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Resources\Common\SuccessResource;
 use Illuminate\Support\Facades\Auth;
 
 class LoginAction
@@ -17,9 +18,6 @@ class LoginAction
         }
         $user = Auth::user();
 
-        return response()->json([
-            'message' => 'Login successful',
-            'user' => $user,
-        ], 200);
+        return new SuccessResource('ログインに成功しました');
     }
 }

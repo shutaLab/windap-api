@@ -3,6 +3,7 @@
 namespace App\UseCases\Departure;
 
 use App\Http\Requests\Departure\DepartureUpdateRequest;
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\Departure;
 
 class DepartureUpdateAction
@@ -19,9 +20,6 @@ class DepartureUpdateAction
 
         $departure->update($validated);
 
-        return response()->json([
-            'message' => '出艇の編集に成功しました',
-            'data' =>  $departure,
-        ], 200);
+        return new SuccessResource('出艇の更新に成功しました');
     }
 }

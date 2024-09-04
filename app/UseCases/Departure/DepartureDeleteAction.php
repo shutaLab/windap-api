@@ -2,6 +2,7 @@
 
 namespace App\UseCases\Departure;
 
+use App\Http\Resources\Common\SuccessResource;
 use App\Models\Departure;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +20,6 @@ class DepartureDeleteAction
 
         $departure->delete();
 
-        return response()->json([
-            'message' => '出艇を削除しました',
-            'data' => $departure
-        ], 200);
+        return new SuccessResource('出艇の削除に成功しました');
     }
 }

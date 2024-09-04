@@ -3,6 +3,7 @@
 namespace App\UseCases\Departure;
 
 use App\Http\Requests\Departure\DepartureIndexRequest;
+use App\Http\Resources\DepartureResource;
 use App\Models\Departure;
 
 class DepartureIndexAction
@@ -13,6 +14,6 @@ class DepartureIndexAction
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return $departures;
+        return response()->json(DepartureResource::collection($departures));
     }
 }

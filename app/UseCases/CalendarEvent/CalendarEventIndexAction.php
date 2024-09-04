@@ -3,6 +3,7 @@
 namespace App\UseCases\CalendarEvent;
 
 use App\Http\Requests\CalendarEvent\CalendarEventIndexRequest;
+use App\Http\Resources\CalendarEventResource;
 use App\Models\CalendarEvent;
 
 class CalendarEventIndexAction
@@ -12,6 +13,6 @@ class CalendarEventIndexAction
         $calendarEvent = CalendarEvent::query()
             ->get();
 
-        return response()->json($calendarEvent);
-    }
+            return response()->json(CalendarEventResource::collection($calendarEvent));
+        }
 }
