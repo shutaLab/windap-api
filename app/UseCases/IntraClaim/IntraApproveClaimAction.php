@@ -33,11 +33,12 @@ class IntraApproveClaimAction
 
         $comment = "{$intraUserName}さんと{$departureUserName}のイントラが確定しました";
 
-        $departureUser->notify(new IntraClaimNotification($intraClaim, $comment));
-        $intraUser->notify(new IntraClaimNotification($intraClaim, $comment));
+        $departure->refresh();
+
+        $departureUser->notify(new IntraClaimNotification($intraClaim, $comment, $departure));
+        $intraUser->notify(new IntraClaimNotification($intraClaim, $comment, $departure));
 
         $intraClaim->delete();
-        $departure->refresh();
 
         return new SuccessResource('イントラを承諾しました');
     }

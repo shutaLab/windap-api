@@ -30,7 +30,7 @@ class IntraRejectAction
 
         $comment = "{$intraUserName}さんがイントラ依頼を取り下げました";
         
-        $departureUser->notify(new IntraClaimNotification($intraClaim, $comment));
+        $departureUser->notify(new IntraClaimNotification($intraClaim, $comment, $departure));
 
         $intraClaim->delete();
 

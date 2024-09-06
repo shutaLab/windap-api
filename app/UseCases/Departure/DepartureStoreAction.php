@@ -4,8 +4,6 @@ namespace App\UseCases\Departure;
 
 use App\Http\Requests\Departure\DepartureStoreRequest;
 use App\Http\Resources\Common\SuccessResource;
-use App\Http\Resources\DepartureResource;
-use App\Http\Resources\IntraClaimResource;
 use App\Models\Departure;
 use App\Models\IntraClaim;
 use App\Models\User;
@@ -38,6 +36,7 @@ class DepartureStoreAction
         $intraUser?->notify(new IntraClaimNotification(
             $intraClaim, 
             "{$departureUserName}さんからイントラ依頼が届いています",
+            $departure,
             'request'
         ));
         
