@@ -20,7 +20,6 @@ class IntraRejectAction
 
         // イントラを依頼したユーザ
         $departureUser = User::find($departure->user_id);
-        $departureUserName = $departureUser->userProfile->name;
 
         if ($intraUser->id !== $intraClaim->intra_user_id) {
             return response()->json([

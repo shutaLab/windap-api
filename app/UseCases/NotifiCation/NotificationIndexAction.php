@@ -10,7 +10,7 @@ class NotificationIndexAction
 {
     public function __invoke(NotificationIndexRequest $request)
     {
-        $notifications = $request->user()->unreadNotifications;
+        $notifications = $request->user()->notifications;
 
         return response()->json(NotificationResource::collection($notifications));
     }

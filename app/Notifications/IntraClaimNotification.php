@@ -31,7 +31,7 @@ class IntraClaimNotification extends Notification
 
     public function toDatabase($notifiable)
     {
-        $this->departure->load('user.userProfile');
+        $this->departure->load('user.userProfile', 'intraUser.userProfile');
         return [
             'intraClaim' => new IntraClaimResource($this->intraClaim),
             'comment' => $this->comment,

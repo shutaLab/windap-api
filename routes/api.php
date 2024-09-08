@@ -76,8 +76,10 @@ Route::middleware(['web'])->group(function () {
         Route::delete('/departure/{departure}', [DepartureController::class, 'destroy'])->name('departures.destroy');
 
         Route::post('/approveClaim/{intraClaim}', [IntraClaimController::class, 'approveClaim'])->name('intraClaim.approveClaim');
+        Route::post('/rejectClaim/{intraClaim}', [IntraClaimController::class, 'rejectClaim'])->name('intraClaim.rejectClaim');
 
         Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+        Route::post('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
         Route::get('/notification/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
         Route::post('/notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.readAll');
     });

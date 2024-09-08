@@ -9,6 +9,7 @@ class DepartureShowAction
 {
     public function __invoke(Departure $departure)
     {
+        $departure->load(['intraUser', 'user']);
         return response()->json(new DepartureResource($departure));
     }
 }
