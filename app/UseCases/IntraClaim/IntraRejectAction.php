@@ -34,8 +34,6 @@ class IntraRejectAction
         
         $departureUser->notify(new IntraClaimNotification($intraClaim, $comment, $departure));
 
-        $intraClaim->delete();
-
         return new SuccessResource('イントラ依頼を取り下げました');
     }
 }

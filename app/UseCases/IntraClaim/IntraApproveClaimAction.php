@@ -41,8 +41,6 @@ class IntraApproveClaimAction
         $departureUser->notify(new IntraClaimNotification($intraClaim, $comment, $departure));
         $intraUser->notify(new IntraClaimNotification($intraClaim, $comment, $departure));
 
-        $intraClaim->delete();
-
         return new SuccessResource('イントラを承諾しました');
     }
 }
