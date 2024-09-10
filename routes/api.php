@@ -77,6 +77,8 @@ Route::middleware(['web'])->group(function () {
 
         Route::post('/approveClaim/{intraClaim}', [IntraClaimController::class, 'approveClaim'])->name('intraClaim.approveClaim');
         Route::post('/rejectClaim/{intraClaim}', [IntraClaimController::class, 'rejectClaim'])->name('intraClaim.rejectClaim');
+        Route::get('/intraClaims', [IntraClaimController::class, 'index'])->name('intraClaim.index');
+        Route::get('/intraClaim/{intraClaim}', [IntraClaimController::class, 'show'])->name('intraClaim.show');
 
         Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
         Route::post('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
