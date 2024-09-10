@@ -28,6 +28,9 @@ class IntraRejectAction
         }
 
         $comment = "{$intraUserName}さんがイントラ依頼を取り下げました";
+
+        // intraClaimのstatusを更新
+        $intraClaim->update(['status' => 'reject']);
         
         $departureUser->notify(new IntraClaimNotification($intraClaim, $comment, $departure));
 
