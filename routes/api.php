@@ -12,6 +12,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WindNoteController;
+use App\Http\Resources\UserResource;
 use App\Models\IntraClaim;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +37,8 @@ Route::middleware(['web'])->group(function () {
     // 認証必要ルート
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/user', function (Request $request) {
-            return $request->user();
+            $user = $request->user()->load('userProfile');
+            return response()->json(new UserResource($user));
         });
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::post('/user/profile', [UserProfileController::class, 'store'])->name('profile.store');
