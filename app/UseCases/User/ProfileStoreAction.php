@@ -11,6 +11,7 @@ class ProfileStoreAction
     public function __invoke(ProfileStoreRequest $request)
     {
         $validated = $request->validated();
+        $validated['user_id'] = $request->user()->id;
 
         $profile = UserProfile::create($validated);
 
