@@ -15,12 +15,13 @@ return [
     |
     */
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-        '%s,%s,%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
-        'windap.vercel.app',
-        'https://windap-3ddf402c9faf.herokuapp.com/'
-    ))),
+  'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
+    '%s,%s,%s',
+    'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
+    'windap.vercel.app',
+    'windap-3ddf402c9faf.herokuapp.com'
+))),
+
 
     /*
     |--------------------------------------------------------------------------
