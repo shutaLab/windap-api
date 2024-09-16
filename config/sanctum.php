@@ -19,7 +19,7 @@ return [
         '%s,%s,%s',
         'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
         'windap.vercel.app',
-        'serene-hollows-70259-0e810f44b7df.herokuapp.com'
+        'https://windap-3ddf402c9faf.herokuapp.com/'
     ))),
 
     /*
