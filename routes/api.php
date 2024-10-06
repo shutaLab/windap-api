@@ -33,6 +33,7 @@ Route::middleware(['web'])->group(function () {
     // 認証不要ルート
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
 
     // 認証必要ルート
     Route::middleware(['auth:sanctum'])->group(function () {
@@ -47,7 +48,6 @@ Route::middleware(['web'])->group(function () {
         Route::get('/users/gradeFilter', [UserController::class, 'gradeFilter'])->name('users.index');
 
 
-        Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
         Route::post('/windNote', [WindNoteController::class, 'store'])->name('windNote.store');
         Route::get('/windNote/{windNote}', [WindNoteController::class, 'show'])->name('windNote.show');
         Route::put('/windNote/{windNote}', [WindNoteController::class, 'update'])->name('windNote.update');
