@@ -16,11 +16,9 @@ class DepartureIndexAction
         $year = $request->query('year');
         $month = $request->query('month');
         $date = $request->query('date');
-        $page = $request->query('page');
 
         $query = Departure::with(['user.userProfile']);
 
-        // クエリ条件の追加
         if ($userId) {
             $query->where('user_id', $userId);
         }
@@ -34,39 +32,33 @@ class DepartureIndexAction
             $query->whereDay('start', $date);
         }
 
-        $allDepartures = $query->get();
-        $allItems = $allDepartures->count();
+        $departures = $query->orderBy('created_at', 'desc')->get();
 
-        if ($page) {
-            $departures = $query->orderBy('start', 'desc')->paginate(3);
-        } else {
-            $departures = $query->orderBy('start', 'desc')->get();
-        }
+        $response = DepartureResource::collection($departures);
+        
 
-        // 合計時間の計算
-        $totalMinutes = $allDepartures->reduce(function ($carry, $departure) {
-            $startTime = Carbon::parse($departure->start);
-            $endTime = Carbon::parse($departure->end);
-            $minutes = $startTime->diffInMinutes($endTime);
-            return $carry + $minutes;
-        }, 0);
+        // user_id が指定されている場合のみ合計時間を計算
+        if ($userId) {
+            // 各 departure の start と end の時間差を累計
+            $totalMinutes = $departures->reduce(function ($carry, $departure) {
+                $startTime = Carbon::parse($departure->start);
+                $endTime = Carbon::parse($departure->end);
 
-        // 累積時間を「時間と分」に変換
-        $hours = floor($totalMinutes / 60);
-        $minutes = $totalMinutes % 60;
-        $totalTimeFormatted = "{$hours}時間{$minutes}分";
+                $minutes = $startTime->diffInMinutes($endTime);
+                // start と end の差を分単位で累積
+                return $carry + $minutes; 
+            }, 0);
 
-        // レスポンスデータの準備
-        $response = [
-            'departures' => DepartureResource::collection($departures),
-            'total_time' => $totalTimeFormatted,
-            'total_items' => $allItems,
-        ];
+            // 累積時間を「時間と分」に変換
+            $hours = floor($totalMinutes / 60);
+            $minutes = $totalMinutes % 60;
+            $totalTimeFormatted = "{$hours}時間{$minutes}分";
 
-        // ページネーションがある場合、ページネーション関連のデータを追加
-        if ($page) {
-            $response['total_pages'] = $departures->lastPage();
-            $response['current_page'] = $departures->currentPage();
+            // 合計時間をレスポンスに追加
+            $response = [
+                'departures' => DepartureResource::collection($departures),
+                'total_time' => $totalTimeFormatted
+            ];
         }
 
         return response()->json($response);
