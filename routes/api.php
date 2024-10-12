@@ -34,6 +34,7 @@ Route::middleware(['web'])->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
+    Route::get('/departures', [DepartureController::class, 'index'])->name('departures.index');
 
     // 認証必要ルート
     Route::middleware(['auth:sanctum'])->group(function () {
@@ -71,7 +72,6 @@ Route::middleware(['web'])->group(function () {
         Route::get('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'show'])->name('noteFavorite.show');
         Route::put('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'update'])->name('noteFavorite.update');
 
-        Route::get('/departures', [DepartureController::class, 'index'])->name('departures.index');
         Route::post('/departure', [DepartureController::class, 'store'])->name('departures.store');
         Route::get('/departure/{departure}', [DepartureController::class, 'show'])->name('departures.show');
         Route::put('/departure/{departure}', [DepartureController::class, 'update'])->name('departures.update');
