@@ -14,13 +14,13 @@ class DepartureResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [    
+        return [
             'id' => $this->id,
-            'start' => $this->start,
-            'end' => $this->end,
+            'start' => $this->start->timezone('Asia/Tokyo')->toIso8601String(),
+            'end' => $this->end->timezone('Asia/Tokyo')->toIso8601String(),
             'description' => $this->description,
             'user' => new UserResource($this->whenLoaded('user')),
             'intraUser' => new UserResource($this->whenLoaded('intraUser'))
-        ];    
+        ];
     }
 }
