@@ -10,10 +10,8 @@ class QuestionShowAction
 {
     public function __invoke(QuestionShowRequest $request, Question $question)
     {
-        // 関連する回答をロード
-        $question->load('user.userProfile','answers');
+        $question->load(['user.userProfile','answers.user.userProfile']);
 
-        // 質問と回答を JSON 形式で返す
         return response()->json(new QuestionResource($question));
     }
 }
