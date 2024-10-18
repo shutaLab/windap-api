@@ -16,9 +16,10 @@ class WindNoteResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user' => new UserResource($this->whenLoaded('user')),
             'title' => $this->title,
             'content' => $this->content,
-            'user' => new UserResource($this->whenLoaded('user')),
+            'created_at' => $this->created_at,
             'favorites' => NoteFavoriteResource::collection($this->whenLoaded('noteFavorites')),
         ];
     }

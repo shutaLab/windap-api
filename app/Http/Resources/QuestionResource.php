@@ -14,11 +14,12 @@ class QuestionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [    
+        return [
             'id' => $this->id,
-            'content' => $this->content,
-            'answers' => AnswerResource::collection($this->whenLoaded('answers')),
             'user' => new UserResource($this->whenLoaded('user')),
-        ];    
+            'content' => $this->content,
+            'created_at' => $this->created_at,
+            'answers' => AnswerResource::collection($this->whenLoaded('answers')),
+        ];
     }
 }
