@@ -10,6 +10,7 @@ class WindNoteShowAction
 {
     public function __invoke(WindNoteShowRequest $request, WindNote $windNote)
     {
+        $windNote->load(['user.userProfile', 'noteFavorites']);
         return response()->json(new WindNoteResource($windNote));
     }
 }
