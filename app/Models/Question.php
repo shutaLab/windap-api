@@ -11,7 +11,8 @@ class Question extends Model
 
     protected $fillable = [
         'user_id',
-        'content'
+        'content',
+        'created_at'
     ];
 
     public function answers()

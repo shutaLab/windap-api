@@ -13,7 +13,8 @@ class WindNote extends Model
         'user_id',
         'title',
         'content',
-        'date'
+        'date',
+        'created_at'
     ];
 
     public function user()
