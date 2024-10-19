@@ -30,7 +30,10 @@ class WindNoteUpdateRequest extends FormRequest
                 'required',
                 'string',
             ],
-
+            'date' => [
+                'required',
+                'date',
+            ]
         ];
     }
 }

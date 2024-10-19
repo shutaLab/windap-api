@@ -31,6 +31,7 @@ class WindNoteStoreRequest extends FormRequest
                 'string',
             ],
             'date' => [
+                'required',
                 'date',
             ]
         ];
