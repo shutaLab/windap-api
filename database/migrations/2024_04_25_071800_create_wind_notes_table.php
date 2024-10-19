@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('title')->comment('タイトル');
             $table->text('content')->comment('ノート内容');
-            $table->dateTime('date')->nullable(true)->comment('日付');
+            $table->date('date')->comment('日付');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ class WindNoteStoreAction
         $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
 
-        $windNote = WindNote::create($validated);
+        WindNote::create($validated);
 
         return new SuccessResource('ノートの作成に成功しました');
     }
