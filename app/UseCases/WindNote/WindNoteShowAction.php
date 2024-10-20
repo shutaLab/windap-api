@@ -12,12 +12,13 @@ class WindNoteShowAction
     {
         $user = $request->user();
 
-        $windNote->load(['user.userProfile', 'noteFavorites'])
-        ->withCount(['noteFavorites as favorites_count'])
+        $windNote = WindNote::with(['user.userProfile', 'noteFavorites.user.userProfile'])
+            ->withCount(['noteFavorites as favorites_count'])
             ->withCount(['noteFavorites as is_favorited' => function ($query) use ($user) {
                 $query->where('user_id', $user->id);
             }])
-            ->get();
+            ->findOrFail($windNote->id);
+
         return response()->json(new WindNoteResource($windNote));
     }
 }
