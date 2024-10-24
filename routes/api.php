@@ -60,6 +60,7 @@ Route::middleware(['web'])->group(function () {
         Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
         Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
 
+        Route::get('/answers', [AnswerController::class, 'index'])->name('answer.index');
         Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
         Route::put('/answer/{answer}', [AnswerController::class, 'update'])->name('answer.update');
         Route::delete('/answer/{answer}', [AnswerController::class, 'destroy'])->name('answer.destroy');
