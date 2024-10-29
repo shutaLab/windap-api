@@ -34,7 +34,10 @@ class DepartureIndexAction
 
         $departures = $query->orderBy('created_at', 'desc')->get();
 
-        $response = DepartureResource::collection($departures);
+        $response = [
+            'departures' => DepartureResource::collection($departures),
+            'total_time' => null
+        ];
         
 
         // user_id が指定されている場合のみ合計時間を計算
