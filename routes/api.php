@@ -67,8 +67,8 @@ Route::middleware(['web'])->group(function () {
 
         Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
         Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
-        Route::put('/calendar/{calendar}', [CalendarEventController::class, 'update'])->name('calendarEvent.update');
-        Route::delete('/calendar/{calendar}', [CalendarEventController::class, 'destroy'])->name('calendarEvent.destroy');
+        Route::put('/calendar/{calendarEvent}', [CalendarEventController::class, 'update'])->name('calendarEvent.update');
+        Route::delete('/calendar/{calendarEvent}', [CalendarEventController::class, 'destroy'])->name('calendarEvent.destroy');
 
         Route::get('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'show'])->name('noteFavorite.show');
         Route::put('/windNote/{windNote}/favorite', [NoteFavoriteController::class, 'update'])->name('noteFavorite.update');
