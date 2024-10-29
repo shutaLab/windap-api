@@ -10,9 +10,8 @@ class CalendarEventIndexAction
 {
     public function __invoke(CalendarEventIndexRequest $request)
     {
-        $calendarEvent = CalendarEvent::query()
-            ->get();
+        $calendarEvent = CalendarEvent::with('user.userProfile')->get();
 
-            return response()->json(CalendarEventResource::collection($calendarEvent));
-        }
+         return response()->json(CalendarEventResource::collection($calendarEvent));
+    }
 }
