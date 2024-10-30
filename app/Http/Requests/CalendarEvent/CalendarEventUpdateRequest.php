@@ -11,7 +11,7 @@ class CalendarEventUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,26 @@ class CalendarEventUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => [
+                'required',
+                'string'
+            ],
+            'content' => [
+                'nullable',
+                'string'
+            ],
+            'start' => [
+                'required',
+                'date_format:Y-m-d\TH:i:s\Z'
+            ],
+            'end' => [
+                'required',
+                'date_format:Y-m-d\TH:i:s\Z'
+            ],
+            'is_absent' => [
+                'nullable',
+                'boolean'
+            ]
         ];
     }
 }
