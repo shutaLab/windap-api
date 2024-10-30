@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('title')->comment('イベントタイトル');
             $table->string('content')->nullable(true)->comment('イベント内容');
-            $table->dateTime('start')->comment('開始日時');
-            $table->dateTime('end')->comment('終了日時');
+            $table->date('start')->comment('開始日時');
+            $table->date('end')->comment('終了日時');
             $table->boolean('is_absent')->nullable(true)->comment('欠席連絡かどうか');
             $table->timestamps();
         });
