@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\ProfileStoreRequest;
-use App\UseCases\User\ProfileStoreAction;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserProfileStoreRequest;
+use App\UseCases\UserProfileStoreAction;
 
 class UserProfileController extends Controller
 {
-    public function store(ProfileStoreRequest $request, ProfileStoreAction $action)
+    public function store(UserProfileStoreRequest $request, UserProfileStoreAction $action)
     {
         return $action($request);
     }
