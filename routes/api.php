@@ -43,7 +43,7 @@ Route::middleware(['web'])->group(function () {
             return response()->json(new UserResource($user));
         });
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-        Route::post('/user/profile', [UserProfileController::class, 'store'])->name('profile.store');
+        Route::post('/profile', [UserProfileController::class, 'store'])->name('profile.update');
 
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/gradeFilter', [UserController::class, 'gradeFilter'])->name('users.index');

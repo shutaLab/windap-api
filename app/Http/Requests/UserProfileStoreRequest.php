@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileStoreRequest extends FormRequest
+class UserProfileStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,27 +22,30 @@ class ProfileStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
+            "name" => [
+                'string',
                 'required',
-                'string'
-            ],
-            'grade' => [
-                'required',
-                'integer'
-            ],
-            'sail_no' => [
-                'required',
-                'string'
-            ],
-            'introduction' => [
-                'nullable',
-                'string'
-            ],
-            'profile_image' => [
-                'nullable',
-                'string'
-            ],
+                'max:255',
 
+            ],
+            "grade" => [
+                'integer',
+                'required',
+            ],
+            "sail_no" => [
+                'string',
+                'required',
+                'max:255',
+            ],
+            "introduction" => [
+                'string',
+                'nullable',
+                'max:255',
+            ],
+            "profile_image" => [
+                'string',
+                'nullable'
+            ]
         ];
     }
 }
