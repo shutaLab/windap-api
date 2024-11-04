@@ -29,7 +29,7 @@ class UserProfileStoreRequest extends FormRequest
 
             ],
             "grade" => [
-                'integer',
+                'string',
                 'required',
             ],
             "sail_no" => [
