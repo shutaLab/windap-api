@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarEventController;
 use App\Http\Controllers\DepartureController;
 use App\Http\Controllers\DepartureRankingController;
+use App\Http\Controllers\DepartureStatusController;
 use App\Http\Controllers\IntraClaimController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NoteFavoriteController;
@@ -37,7 +38,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
     Route::get('/departures', [DepartureController::class, 'index'])->name('departures.index');
     Route::get('/departures/rankings', [DepartureRankingController::class, 'index'])->name('departures.ranking');
-
+    Route::get('/departures/status', [DepartureStatusController::class, 'index'])->name('departures.status');
     // 認証必要ルート
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/user', function (Request $request) {
