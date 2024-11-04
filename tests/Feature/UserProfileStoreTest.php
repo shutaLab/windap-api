@@ -21,7 +21,7 @@ class UserProfileStoreTest extends TestCase
 
         $response = $this->postJson('/api/profile', [
             'name' => '山田',
-            'grade' => 3,
+            'grade' => "3",
             'sail_no' => '31-50',
             
         ]);

@@ -20,8 +20,8 @@ class CalendarEvent extends Model
     ];
 
     protected $casts = [
-        'start' => 'datetime',
-        'end' => 'datetime',
+        'start' => 'date:Y-m-d',
+        'end' => 'date:Y-m-d',
         'is_absent' => 'boolean'
     ];
 

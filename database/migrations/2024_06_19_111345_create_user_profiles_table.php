@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('name')->comment('ユーザ名');
-            $table->integer('grade')->comment('学年');
+            $table->string('grade')->comment('学年');
             $table->string('sail_no')->comment('セールナンバー');
             $table->string('introduction')->nullable(true)->comment('自己紹介文');
             $table->string('profile_image')->nullable(true)->comment('プロフィール画像');

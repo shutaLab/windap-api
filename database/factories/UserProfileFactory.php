@@ -21,7 +21,7 @@ class UserProfileFactory extends Factory
         $secondNumber = $this->faker->numberBetween(1, 99);
         return [
             'name' => $this->faker->realText(rand(10, 20)),
-            'grade' => $this->faker->numberBetween(1, 4),
+            'grade' => $this->faker->randomElement(['1', '2', '3', '4']),
             'sail_no' => "{$firstNumber}-{$secondNumber}",
             'introduction' => $this->faker->realText(rand(10, 20))
         ];
