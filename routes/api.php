@@ -4,6 +4,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarEventController;
 use App\Http\Controllers\DepartureController;
+use App\Http\Controllers\DepartureRankingController;
 use App\Http\Controllers\IntraClaimController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NoteFavoriteController;
@@ -35,6 +36,7 @@ Route::middleware(['web'])->group(function () {
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
     Route::get('/departures', [DepartureController::class, 'index'])->name('departures.index');
+    Route::get('/departures/rankings', [DepartureRankingController::class, 'index'])->name('departures.ranking');
 
     // 認証必要ルート
     Route::middleware(['auth:sanctum'])->group(function () {
@@ -77,6 +79,8 @@ Route::middleware(['web'])->group(function () {
         Route::get('/departure/{departure}', [DepartureController::class, 'show'])->name('departures.show');
         Route::put('/departure/{departure}', [DepartureController::class, 'update'])->name('departures.update');
         Route::delete('/departure/{departure}', [DepartureController::class, 'destroy'])->name('departures.destroy');
+
+        // 出艇ランキング
 
         Route::post('/approveClaim/{intraClaim}', [IntraClaimController::class, 'approveClaim'])->name('intraClaim.approveClaim');
         Route::post('/rejectClaim/{intraClaim}', [IntraClaimController::class, 'rejectClaim'])->name('intraClaim.rejectClaim');
