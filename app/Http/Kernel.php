@@ -9,8 +9,6 @@ class Kernel extends HttpKernel
     /**
      * The application's global HTTP middleware stack.
      *
-     * These middleware are run during every request to your application.
-     *
      * @var array<int, class-string|string>
      */
     protected $middleware = [
@@ -37,20 +35,19 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-
+    
         'api' => [
+            \Illuminate\Http\Middleware\HandleCors::class,
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ]
+            'throttle:api',
+        ],
     ];
 
     /**
      * The application's middleware aliases.
-     *
-     * Aliases may be used instead of class names to conveniently assign middleware to routes and groups.
      *
      * @var array<string, class-string|string>
      */
