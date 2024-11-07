@@ -16,7 +16,7 @@ class TrustHosts extends Middleware
         return [
             'api.windap.jp',
             'windap.jp',
-            '.vercel.app', // Vercelのドメインを許可
+            '.vercel.app',
             $this->allSubdomainsOfApplicationUrl(),
         ];
     }
