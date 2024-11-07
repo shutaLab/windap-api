@@ -14,6 +14,9 @@ class TrustHosts extends Middleware
     public function hosts(): array
     {
         return [
+            'api.windap.jp',
+            'windap.jp',
+            '.vercel.app', // Vercelのドメインを許可
             $this->allSubdomainsOfApplicationUrl(),
         ];
     }
