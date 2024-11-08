@@ -62,8 +62,8 @@ return [
             'after_commit' => false,
         ],
 
-        'redis' => [
-            'driver' => 'redis',
+        '' => [
+            'driver' => '',
             'connection' => 'default',
             'queue' => env('REDIS_QUEUE', 'default'),
             'retry_after' => 90,
