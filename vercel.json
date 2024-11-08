@@ -24,11 +24,7 @@
             "dest": "/public/robots.txt"
         },
         {
-            "src": "/api/(.*)",
-            "dest": "/api/index.php"
-        },
-        {
-            "src": "/((?!api/).*)",
+            "src": "/(.*)",
             "dest": "/api/index.php"
         }
     ],
