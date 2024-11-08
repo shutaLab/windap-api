@@ -19,8 +19,7 @@ return [
     '%s,%s,%s',
     'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
     'windap.vercel.app',
-    'windap-3ddf402c9faf.herokuapp.com',
-    'windap.jp'
+    'windap-3ddf402c9faf.herokuapp.com'
 ))),
 
 

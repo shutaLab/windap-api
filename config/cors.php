@@ -5,7 +5,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:3000', 'https://windap.jp', 'http://localhost:5051', 'https://api.windap.jp' ],
+    'allowed_origins' => ['http://localhost:3000', 'https://windap.jp', 'http://localhost:5051'],
 
     'allowed_origins_patterns' => [],
 

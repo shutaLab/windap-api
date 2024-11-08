@@ -40,17 +40,6 @@
         "CACHE_STORE": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        "VIEW_COMPILED_PATH": "/tmp",
-        "FILESYSTEM_DISK": "local",
-        "SESSION_LIFETIME": "120",
-        "FILESYSTEM_DRIVER": "local",
-        "QUEUE_CONNECTION": "sync"
-    },
-    "functions": {
-        "api/index.php": {
-            "runtime": "vercel-php@0.7.2",
-            "memory": 1024,
-            "maxDuration": 10
-        }
+        "VIEW_COMPILED_PATH": "/tmp"
     }
 }
