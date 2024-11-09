@@ -15,10 +15,13 @@ return [
     |
     */
 
-  'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-    '%s,%s,%s',
-    'windap.jp,api.windap.jp',
-    env('APP_URL') ? ','.parse_url(env('APP_URL'), PHP_URL_HOST) : ''))),
+ 'stateful' => explode(',', sprintf(
+    '%s,%s,%s,%s',
+    'windap.jp',
+    'api.windap.jp',
+    'localhost:3000',
+    '127.0.0.1:8000,::1'
+)),
 
 
     /*
