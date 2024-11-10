@@ -41,6 +41,7 @@
         "CACHE_STORE": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
+        "LOG_LEVEL": "debug",
         "VIEW_COMPILED_PATH": "/tmp",
         "SESSION_DOMAIN": ".windap.jp",
         "SANCTUM_STATEFUL_DOMAINS": "windap.jp,api.windap.jp",
