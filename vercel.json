@@ -30,8 +30,7 @@
     ],
     "env": {
         "APP_NAME": "Laravel Vercel",
-        "APP_ENV": "production",
-        "APP_DEBUG": "true",
+        "APP_DEBUG": "false",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
@@ -39,19 +38,8 @@
         "APP_SERVICES_CACHE": "/tmp/services.php",
         "CACHE_DRIVER": "array",
         "CACHE_STORE": "array",
-        "LOG_CHANNEL": "vercel",
+        "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        "LOG_LEVEL": "debug",
-        "VIEW_COMPILED_PATH": "/tmp",
-        "SESSION_DOMAIN": ".windap.jp",
-        "SANCTUM_STATEFUL_DOMAINS": "windap.jp,api.windap.jp",
-        "APP_URL": "https://api.windap.jp",
-        "FRONTEND_URL": "https://windap.jp"
-    },
-    "functions": {
-        "api/index.php": {
-            "memory": 1024,
-            "maxDuration": 10
-        }
+        "VIEW_COMPILED_PATH": "/tmp"
     }
 }
