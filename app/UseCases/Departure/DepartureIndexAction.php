@@ -44,14 +44,21 @@ class DepartureIndexAction
             $departures = $query->orderBy('created_at', 'desc')->get();
 
             $response = [
-                'departures' => DepartureResource::collection($departures),
-                'total_time' => null
+                'status' => 'success',
+                'data' => [
+                    'departures' => DepartureResource::collection($departures),
+                    'total_time' => null
+                ]
             ];
 
             if ($userId) {
                 $totalMinutes = $departures->reduce(function ($carry, $departure) {
-                    // null チェックを追加
                     if (!$departure->start || !$departure->end) {
+                        Log::warning('Invalid departure time data:', [
+                            'departure_id' => $departure->id,
+                            'start' => $departure->start,
+                            'end' => $departure->end
+                        ]);
                         return $carry;
                     }
 
@@ -76,7 +83,7 @@ class DepartureIndexAction
                 $minutes = $totalMinutes % 60;
                 $totalTimeFormatted = "{$hours}時間{$minutes}分";
 
-                $response['total_time'] = $totalTimeFormatted;
+                $response['data']['total_time'] = $totalTimeFormatted;
             }
 
             return response()->json($response);
@@ -88,8 +95,18 @@ class DepartureIndexAction
             ]);
 
             return response()->json([
-                'error' => 'データの取得中にエラーが発生しました。',
-                'message' => $e->getMessage()
+                'status' => 'error',
+                'error' => [
+                    'code' => 500,
+                    'message' => 'データの取得中にエラーが発生しました。',
+                    'details' => [
+                        'message' => $e->getMessage(),
+                        'file' => $e->getFile(),
+                        'line' => $e->getLine(),
+                        'trace' => config('app.debug') ? $e->getTraceAsString() : null
+                    ],
+                    'timestamp' => now()->toIso8601String()
+                ]
             ], 500);
         }
     }
