@@ -20,6 +20,7 @@ return [
     'windap.jp',
     'api.windap.jp',
     'localhost:3000',
+    'localhost:8000',
     '127.0.0.1:8000,::1'
 )),
 
