@@ -35,10 +35,14 @@ Route::middleware(['web'])->group(function () {
     // 認証不要ルート
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
-    Route::get('/windNote', [WindNoteController::class, 'index'])->name('windNote.index');
+    Route::get('/windNotes', [WindNoteController::class, 'index'])->name('windNote.index');
     Route::get('/departures', [DepartureController::class, 'index'])->name('departures.index');
     Route::get('/departures/rankings', [DepartureRankingController::class, 'index'])->name('departures.ranking');
     Route::get('/departures/status', [DepartureStatusController::class, 'index'])->name('departures.status');
+    Route::get('/questions', [QuestionController::class, 'index'])->name('question.index');
+    Route::get('/calendars', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
+    Route::get('/answers', [AnswerController::class, 'index'])->name('answer.index');
+
     // 認証必要ルート
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/user', function (Request $request) {
@@ -57,18 +61,15 @@ Route::middleware(['web'])->group(function () {
         Route::put('/windNote/{windNote}', [WindNoteController::class, 'update'])->name('windNote.update');
         Route::delete('/windNote/{windNote}', [WindNoteController::class, 'destroy'])->name('windNote.destroy');
 
-        Route::get('/question', [QuestionController::class, 'index'])->name('question.index');
         Route::post('/question', [QuestionController::class, 'store'])->name('question.store');
         Route::get('/question/{question}', [QuestionController::class, 'show'])->name('question.show');
         Route::put('/question/{question}', [QuestionController::class, 'update'])->name('question.update');
         Route::delete('/question/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
 
-        Route::get('/answers', [AnswerController::class, 'index'])->name('answer.index');
         Route::post('/answer', [AnswerController::class, 'store'])->name('answer.store');
         Route::put('/answer/{answer}', [AnswerController::class, 'update'])->name('answer.update');
         Route::delete('/answer/{answer}', [AnswerController::class, 'destroy'])->name('answer.destroy');
 
-        Route::get('/calendar', [CalendarEventController::class, 'index'])->name('calendarEvent.index');
         Route::post('/calendar', [CalendarEventController::class, 'store'])->name('calendarEvent.store');
         Route::put('/calendar/{calendarEvent}', [CalendarEventController::class, 'update'])->name('calendarEvent.update');
         Route::delete('/calendar/{calendarEvent}', [CalendarEventController::class, 'destroy'])->name('calendarEvent.destroy');
