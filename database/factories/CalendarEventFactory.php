@@ -23,7 +23,7 @@ class CalendarEventFactory extends Factory
             'content' => $this->faker->realText(rand(10, 20)),
             'start' => $start,
             'end' => $end,
-            'is_absent' => $this->faker->boolean(50)
+            'is_absent' => null
         ];
     }
 }
