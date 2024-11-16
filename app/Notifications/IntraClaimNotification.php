@@ -6,6 +6,7 @@ use App\Http\Resources\DepartureResource;
 use App\Http\Resources\IntraClaimResource;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class IntraClaimNotification extends Notification
 {
@@ -26,7 +27,7 @@ class IntraClaimNotification extends Notification
 
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     public function toDatabase($notifiable)
@@ -38,5 +39,30 @@ class IntraClaimNotification extends Notification
             'departure' => new DepartureResource($this->departure),
             'type' => $this->type
         ];
+    }
+
+    public function toMail($notifiable)
+    {
+        $this->departure->load('user.userProfile', 'intraUser.userProfile');
+
+        $subject = match ($this->type) {
+            'approved' => '申請が承認されました',
+            'rejected' => '申請が却下されました',
+            'commented' => '新しいコメントがあります',
+            default => 'Intra Claim 通知'
+        };
+        $baseUrl = config('app.url');
+        $detailUrl = $baseUrl . "myPage/intra";
+        return (new MailMessage)
+            ->subject($subject)
+            ->greeting('こんにちは')
+            ->line("イントラ申請について通知です。")
+            ->when($this->comment, function ($message) {
+                return $message->line("コメント: {$this->comment}");
+            })
+            ->line("申請者: {$this->departure->user->userProfile->name}")
+            ->line("申請日: {$this->departure->created_at->format('Y年m月d日')}")
+            ->action('詳細を確認', $detailUrl)
+            ->line('このメールはシステムより自動送信されています。');
     }
 }
