@@ -51,7 +51,6 @@ class IntraClaimNotification extends Notification
             'commented' => '新しいコメントがあります',
             default => 'イントラ申請通知'
         };
-        $detailUrl = env('FRONT_URL') . 'myPage/intra';
         return (new MailMessage)
             ->mailer('smtp')
             ->subject($subject)
@@ -62,7 +61,6 @@ class IntraClaimNotification extends Notification
             })
             ->line("申請者: {$this->departure->user->userProfile->name}")
             ->line("出艇時間: {$this->departure->start->format('m月d日 H:i~')}{$this->departure->end->format('H:i')}")
-            ->action('詳細を確認', $detailUrl)
             ->line('このメールはシステムより自動送信されています。');
     }
 }
