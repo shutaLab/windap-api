@@ -49,11 +49,12 @@ class IntraClaimNotification extends Notification
             'approved' => '申請が承認されました',
             'rejected' => '申請が却下されました',
             'commented' => '新しいコメントがあります',
-            default => 'Intra Claim 通知'
+            default => 'イントラ申請通知'
         };
         $baseUrl = config('app.url');
         $detailUrl = $baseUrl . "myPage/intra";
         return (new MailMessage)
+            ->mailer('smtp')
             ->subject($subject)
             ->greeting('こんにちは')
             ->line("イントラ申請について通知です。")
@@ -61,7 +62,7 @@ class IntraClaimNotification extends Notification
                 return $message->line("コメント: {$this->comment}");
             })
             ->line("申請者: {$this->departure->user->userProfile->name}")
-            ->line("申請日: {$this->departure->created_at->format('Y年m月d日')}")
+            ->line("出艇時間: {$this->departure->start->format('m月d日 H:i~')}{$this->departure->end->format('H:i')}")
             ->action('詳細を確認', $detailUrl)
             ->line('このメールはシステムより自動送信されています。');
     }
