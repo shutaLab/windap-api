@@ -51,7 +51,8 @@ class IntraClaimNotification extends Notification
             'commented' => '新しいコメントがあります',
             default => 'イントラ申請通知'
         };
-        $detailUrl = config('FRONT_URL') . 'myPage/intra';
+        $baseUrl = config('app.url');
+        $detailUrl = $baseUrl . "myPage/intra";
         return (new MailMessage)
             ->mailer('smtp')
             ->subject($subject)
