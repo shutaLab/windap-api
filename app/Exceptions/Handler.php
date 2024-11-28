@@ -7,24 +7,28 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * The list of the inputs that are never flashed to the session on validation exceptions.
-     *
-     * @var array<int, string>
-     */
-    protected $dontFlash = [
-        'current_password',
-        'password',
-        'password_confirmation',
-    ];
-
-    /**
-     * Register the exception handling callbacks for the application.
-     */
-    public function register(): void
+    public function render($request, Throwable $exception)
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+        // APIリクエストの場合
+        if ($request->expectsJson()) {
+            $response = [
+                'status' => 'error',
+                'error' => [
+                    'code' => 500,
+                    'message' => 'データの取得中にエラーが発生しました。',
+                    'details' => [
+                        'message' => $exception->getMessage(),
+                        'file' => $exception->getFile(),
+                        'line' => $exception->getLine(),
+                    ]
+                ]
+            ];
+            // 開発環境の場合はスタックトレースを追加
+            if (config('app.debug')) {
+                $response['error']['details']['trace'] = $exception->getTraceAsString();
+            }
+            return response()->json($response, 500);
+        }
+        return parent::render($request, $exception);
     }
 }
