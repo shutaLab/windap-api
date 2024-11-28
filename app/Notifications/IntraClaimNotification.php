@@ -53,6 +53,7 @@ class IntraClaimNotification extends Notification
         };
         return (new MailMessage)
             ->mailer('smtp')
+            ->from(config('mail.from.address'), config('mail.from.name'))
             ->subject($subject)
             ->greeting('こんにちは')
             ->line("イントラ申請について通知です。")
@@ -61,6 +62,7 @@ class IntraClaimNotification extends Notification
             })
             ->line("申請者: {$this->departure->user->userProfile->name}")
             ->line("出艇時間: {$this->departure->start->format('m月d日 H:i~')}{$this->departure->end->format('H:i')}")
-            ->line('このメールはシステムより自動送信されています。');
+            ->line('このメールはシステムより自動送信されています。')
+            ->salutation('');
     }
 }
