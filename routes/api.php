@@ -90,7 +90,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/intraClaim/{intraClaim}', [IntraClaimController::class, 'show'])->name('intraClaim.show');
 
         Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
-        Route::post('/notification/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+        Route::post('/notification/{notification}/read', [NotificationController::class, 'read'])->name('notifications.read');
         Route::get('/notification/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
         Route::post('/notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.readAll');
     });

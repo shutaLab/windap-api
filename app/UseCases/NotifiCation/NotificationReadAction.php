@@ -2,12 +2,13 @@
 
 namespace App\UseCases\Notification;
 
+use App\Http\Requests\Notification\NotificationReadRequest;
 use App\Http\Resources\Common\SuccessResource;
 use Illuminate\Notifications\DatabaseNotification;
 
-class MarkAsReadAction
+class NotificationReadAction
 {
-    public function __invoke(DatabaseNotification $notification)
+    public function __invoke(NotificationReadRequest $request, DatabaseNotification $notification)
     {
         if ($notification->read_at === null) {
             $notification->markAsRead();
