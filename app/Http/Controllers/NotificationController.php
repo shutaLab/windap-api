@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\NotifiCation\NotificationIndexRequest;
-use App\Http\Requests\NotifiCation\NotificationReadAllRequest;
-use App\Http\Requests\NotifiCation\NotificationShowRequest;
-use App\UseCases\NotifiCation\NotificationIndexAction;
+use App\Http\Requests\Notification\NotificationIndexRequest;
+use App\Http\Requests\Notification\NotificationReadAllRequest;
+use App\Http\Requests\Notification\NotificationShowRequest;
+use App\UseCases\Notification\NotificationIndexAction;
 use App\UseCases\Notification\NotificationReadAction;
-use App\UseCases\NotifiCation\NotificationReadAllAction;
-use App\UseCases\NotifiCation\NotificationShowAction;
+use App\UseCases\Notification\NotificationReadAllAction;
+use App\UseCases\Notification\NotificationShowAction;
 use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationController extends Controller
