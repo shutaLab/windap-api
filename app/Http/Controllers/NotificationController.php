@@ -12,9 +12,9 @@ use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationController extends Controller
 {
-    public function index(NotificationIndexRequest $request, NotificationIndexAction $action)
+    public function index(NotificationIndexAction $action)
     {
-        return $action($request);
+        return $action();
     }
 
     public function read(NotificationReadAction $action, DatabaseNotification $notification)

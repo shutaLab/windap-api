@@ -4,12 +4,14 @@ namespace App\UseCases\Notification;
 
 use App\Http\Requests\Notification\NotificationReadAllRequest;
 use App\Http\Resources\Common\SuccessResource;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationReadAllAction
 {
     public function __invoke(NotificationReadAllRequest $request)
     {
-        $notifications = $request->user()->unreadNotifications;
+        $user = Auth::user();
+        $notifications = $user->unreadNotifications;
 
         $notifications->markAsRead();
 
