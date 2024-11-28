@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NotifiCation\NotificationIndexRequest;
 use App\Http\Requests\NotifiCation\NotificationReadAllRequest;
 use App\Http\Requests\NotifiCation\NotificationShowRequest;
-use App\UseCases\Notification\MarkAsReadAction;
 use App\UseCases\NotifiCation\NotificationIndexAction;
-use App\UseCases\NotifiCation\NotificationReadAction;
+use App\UseCases\Notification\NotificationReadAction;
 use App\UseCases\NotifiCation\NotificationReadAllAction;
 use App\UseCases\NotifiCation\NotificationShowAction;
-use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Support\Testing\Fakes\NotificationFake;
 
 class NotificationController extends Controller
 {
@@ -26,7 +23,7 @@ class NotificationController extends Controller
         return $action($request, $notification);
     }
 
-    public function markAsRead(MarkAsReadAction $action, DatabaseNotification $notification)
+    public function read(NotificationReadAction $action, DatabaseNotification $notification)
     {
         return $action($notification);
     }
