@@ -1,8 +1,8 @@
 <?php
 
-namespace App\UseCases\NotifiCation;
+namespace App\UseCases\Notification;
 
-use App\Http\Requests\NotifiCation\NotificationIndexRequest;
+use App\Http\Requests\Notification\NotificationIndexRequest;
 use App\Http\Resources\NotificationResource;
 use Illuminate\Support\Facades\Auth;
 

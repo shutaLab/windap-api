@@ -1,8 +1,8 @@
 <?php
 
-namespace App\UseCases\NotifiCation;
+namespace App\UseCases\Notification;
 
-use App\Http\Requests\NotifiCation\NotificationShowRequest;
+use App\Http\Requests\Notification\NotificationShowRequest;
 use App\Http\Resources\NotificationResource;
 use Illuminate\Notifications\DatabaseNotification;
 
