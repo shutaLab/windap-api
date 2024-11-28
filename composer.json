@@ -52,8 +52,7 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ],
-        "vercel-build": "composer install --optimize-autoloader && composer dump-autoload -o && php artisan cache:clear && php artisan config:clear && php artisan route:clear"
+        ]
     },
     "extra": {
         "laravel": {
