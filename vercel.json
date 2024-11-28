@@ -3,7 +3,11 @@
     "builds": [
         {
             "src": "/api/index.php",
-            "use": "vercel-php@0.7.2"
+            "use": "vercel-php@0.7.2",
+            "config": {
+                "composer": true,
+                "composerCommand": "composer install --optimize-autoloader && composer dump-autoload -o"
+            }
         },
         {
             "src": "/public/**",

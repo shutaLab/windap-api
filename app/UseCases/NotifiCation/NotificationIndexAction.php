@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class NotificationIndexAction
 {
-   public function __invoke()
+   public function __invoke(NotificationIndexRequest $request)
     {
         $user = Auth::user();
         $notifications = $user->notifications;
