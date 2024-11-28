@@ -1,8 +1,8 @@
 <?php
 
-namespace App\UseCases\NotifiCation;
+namespace App\UseCases\Notification;
 
-use App\Http\Requests\NotifiCation\NotificationReadAllRequest;
+use App\Http\Requests\Notification\NotificationReadAllRequest;
 use App\Http\Resources\Common\SuccessResource;
 
 class NotificationReadAllAction
