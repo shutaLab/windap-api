@@ -1,4 +1,5 @@
 {
+    "buildCommand": "composer install && composer dump-autoload --optimize",
     "regions": ["hnd1"],
     "builds": [
         {
