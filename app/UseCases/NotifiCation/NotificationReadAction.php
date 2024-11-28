@@ -8,7 +8,7 @@ use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationReadAction
 {
-    public function __invoke(NotificationReadRequest $request, DatabaseNotification $notification)
+    public function __invoke(DatabaseNotification $notification)
     {
         if ($notification->read_at === null) {
             $notification->markAsRead();
