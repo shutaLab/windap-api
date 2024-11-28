@@ -91,7 +91,7 @@ Route::middleware(['web'])->group(function () {
 
         Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
         Route::post('/notification/{notification}/read', [NotificationController::class, 'read'])->name('notifications.read');
-        Route::get('/notification/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
+        Route::get('/notification/{notification}', [NotificationController::class, 'show'])->name('notification.show');
         Route::post('/notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.readAll');
     });
 });

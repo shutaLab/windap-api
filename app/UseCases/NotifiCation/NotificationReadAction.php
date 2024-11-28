@@ -2,7 +2,6 @@
 
 namespace App\UseCases\Notification;
 
-use App\Http\Requests\Notification\NotificationReadRequest;
 use App\Http\Resources\Common\SuccessResource;
 use Illuminate\Notifications\DatabaseNotification;
 
