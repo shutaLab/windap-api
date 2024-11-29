@@ -53,7 +53,7 @@ class IntraClaimNotification extends Notification
 
         return (new MailMessage)
             ->subject($subject)
-            ->markdown('mail.intra-claim', [
+            ->markdown('mail.notification', [
                 'comment' => $this->comment,
                 'userName' => $this->departure->user->userProfile->name,
                 'startTime' => $this->departure->start->format('m月d日 H:i'),
