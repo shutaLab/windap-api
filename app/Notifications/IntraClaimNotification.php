@@ -44,25 +44,21 @@ class IntraClaimNotification extends Notification
     public function toMail($notifiable)
     {
         $this->departure->load('user.userProfile', 'intraUser.userProfile');
-
         $subject = match ($this->type) {
             'approved' => '申請が承認されました',
             'rejected' => '申請が却下されました',
             'commented' => '新しいコメントがあります',
             default => 'イントラ申請通知'
         };
+
         return (new MailMessage)
-            ->mailer('smtp')
-            ->from(config('mail.from.address'), config('mail.from.name'))
             ->subject($subject)
-            ->greeting('こんにちは')
-            ->line("イントラ申請について通知です。")
-            ->when($this->comment, function ($message) {
-                return $message->line("コメント: {$this->comment}");
-            })
-            ->line("申請者: {$this->departure->user->userProfile->name}")
-            ->line("出艇時間: {$this->departure->start->format('m月d日 H:i~')}{$this->departure->end->format('H:i')}")
-            ->line('このメールはシステムより自動送信されています。')
-            ->salutation('');
-    }
+            ->markdown('mail.intra-claim', [
+                'comment' => $this->comment,
+                'userName' => $this->departure->user->userProfile->name,
+                'startTime' => $this->departure->start->format('m月d日 H:i'),
+                'endTime' => $this->departure->end->format('H:i'),
+                'url' => '' // 必要に応じて追加
+            ]);
+        }
 }
