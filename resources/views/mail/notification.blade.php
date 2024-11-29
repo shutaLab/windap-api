@@ -19,4 +19,5 @@
 
 このメールはシステムより自動送信されています。
 
+{{ config('app.name') }}
 </x-mail::message>
