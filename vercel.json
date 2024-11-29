@@ -30,7 +30,7 @@
         }
     ],
     "env": {
-        "APP_NAME": "Laravel Vercel",
+        "APP_NAME": "Windap",
         "APP_DEBUG": "false",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
